@@ -29,7 +29,6 @@ body {
 
 main {
     display: flex;
-    border: solid #8E80BF 1px;
     border-radius: 20px;
     margin: 20px;
     padding: 20px;
@@ -37,11 +36,6 @@ main {
     
 }
 
-
-
-.examples {
-    
-}
 
 h3 {
     text-align: center;
@@ -52,9 +46,9 @@ h3 {
 .item {
     display: flex;
     flex-direction: column;
+    justify-items: space-around;
     margin: 20px;
     padding: 20px;
-    border: solid #8E80BF 1px;
     border-radius: 20px;   
 }
 
@@ -94,9 +88,17 @@ footer {
     .examples {
         display: flex;
         flex-wrap: wrap;
+        justify-content: center;
     }
 
     .item {
         max-width: 40%;
+        display: flex;
+        
+    }
+
+    .item a {
+        display: flex;
+        justify-self: flex-end;
     }
 }
