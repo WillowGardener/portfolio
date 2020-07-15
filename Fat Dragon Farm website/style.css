@@ -10,6 +10,7 @@ body {
     color: #B4CBD9;
     font-family: 'Roboto', sans-serif;
     font-family: 'Source Sans Pro', sans-serif;
+    
 }
 
 header {
@@ -105,6 +106,7 @@ main {
 }
 
 .description {
+    font-size: 500%;
     display: flex;
     flex-direction: column;
     margin: 10px;
@@ -114,6 +116,8 @@ main {
     padding: 10px;
     background-color: #485659;
     align-self: center;
+    
+    
 }
 
 .nav {

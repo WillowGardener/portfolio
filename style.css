@@ -37,7 +37,7 @@ main {
     
 }
 
-}
+
 
 .examples {
     
@@ -80,8 +80,23 @@ footer {
         font-size: 3rem;
     }
 
-    main {
+    body {
         font-size: 1.5em;
+    }
+    main {
+        
         flex-wrap: nowrap;
+    }
+}
+
+@media (min-width: 1100px) {
+
+    .examples {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .item {
+        max-width: 40%;
     }
 }
