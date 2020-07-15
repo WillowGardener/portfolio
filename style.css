@@ -81,7 +81,7 @@ footer {
     }
 
     main {
-        font-size: 2rem;
+        font-size: 1.5em;
         flex-wrap: nowrap;
     }
 }

@@ -1,0 +1,194 @@
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    background-color: #212624;
+    color: #B4CBD9;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+header {
+    display: flex;
+    margin: 5px;
+    margin-bottom: 0px; 
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.intro {
+    display: flex;
+    max-width: 100%;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 10px;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    
+    
+}
+
+h3 {
+    display: flex; 
+    margin: 1px;
+}
+
+h4 {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    margin: 1px; 
+}
+
+header img {
+    max-width: 30%;
+    border-radius: 50%;
+    max-width: 180px;
+    max-height: 180px;
+    border-radius: 50%;
+    
+    
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    display: flex;
+    border-radius: 10px;
+    max-width: 90%;
+    margin: 5px;
+    border: 1px solid #527349;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.banner {
+    display: flex;
+    max-width: 100%;
+    justify-content: center;
+    align-self: center
+}
+
+.allpics {
+    display: flex;
+    flex-direction: column
+}
+
+.smallpics {
+    display: flex;
+    flex-direction: row;
+    max-width: 90%;
+    margin: 5px;
+    align-self: center;
+    justify-content: center;
+    justify-self: center;
+   
+}
+
+.smallpics img {
+    display: flex;
+    max-width: 30%;
+    justify-content: center;
+    align-content:center;
+    
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    max-width: 90%;
+    border: 1px solid #527349;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #485659;
+    align-self: center;
+}
+
+.nav {
+    margin: 10px;
+    margin-left: 5%;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-self: left;
+    border-radius: 10px;
+    max-width: 90%;
+    font-size: 1.5em;
+
+}
+
+button {
+    display: flex;
+    max-width: 50%;
+    align-self: center;
+    margin: 8px;
+}
+
+@media (min-width: 768px) {
+    header {
+        font-size: 2em
+    }
+
+    .nav {
+        margin-left: 5%;
+    }
+    header img {
+        max-width: 20%;
+        max-height: 20%; 
+        border-radius: 50%;
+        
+    }
+}
+
+@media (min-width: 1100px) {
+    header {
+        font-size: 3em;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    main {
+        display: flex;
+        flex-direction: row;
+        align-items: space-around;
+    }
+
+    .allpics {
+        
+    }
+
+    main img {     
+        
+    }
+
+    .banner {
+        padding: 5px;
+    }
+
+    .description {
+        min-width: 40%;
+        display: flex;
+        align-self: flex-start; 
+    }
+
+    .smallpics img {
+        
+    }
+}
+
+}
