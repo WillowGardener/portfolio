@@ -2,6 +2,8 @@ import random as r
 import pygame
 import math
 
+#Grass, rabbit, and fox assets are from Freepix at Flaticon.com
+
 #Here is all the pre-game setup stuff
 pygame.init()
 screen = pygame.display.set_mode((960,640))

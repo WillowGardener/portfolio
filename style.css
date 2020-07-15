@@ -30,11 +30,44 @@ body {
 main {
     display: flex;
     border: solid #8E80BF 1px;
-    border-radius: 50px;
+    border-radius: 20px;
     margin: 20px;
-    padding: 25px;
+    padding: 20px;
     flex-wrap: wrap;
     
+}
+
+}
+
+.examples {
+    
+}
+
+h3 {
+    text-align: center;
+}
+    
+
+
+.item {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+    border: solid #8E80BF 1px;
+    border-radius: 20px;   
+}
+
+.item img {
+    display: flex;
+    max-width: 100%;
+    align-self: center;
+    border-radius: 20px;
+}
+
+a {
+    padding-top: 10px;
+    color: #8E80BF
 }
 
 footer {
