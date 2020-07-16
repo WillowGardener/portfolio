@@ -12,7 +12,7 @@ body {
     background-repeat: no-repeat;
     background-size: 100%;
     background-color: rgb(2,3,2); 
-    
+    width: 100vw;
     color: #6763BF;
     font-family: 'Merriweather', serif;
     font-family: 'Montserrat', sans-serif;
