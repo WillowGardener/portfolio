@@ -24,7 +24,11 @@ body {
     display: flex;
     justify-self: flex-start;
     align-self: center;
-    max-width: 100%;
+    max-width: 100;
+}
+
+.banner img {
+    max-width: 100%
 }
 
 .header {
