@@ -12,7 +12,7 @@ body {
     background-repeat: no-repeat;
     background-size: 100%;
     background-color: rgb(2,3,2); 
-    width: 100vw;
+    width: 100%;
     color: #6763BF;
     font-family: 'Merriweather', serif;
     font-family: 'Montserrat', sans-serif;
@@ -49,10 +49,6 @@ main {
 h3 {
     text-align: center;
 }
-
-.description {
-    
-}
     
 .examples {
     background-image: linear-gradient(rgb(2,3,2),rgb(11,16,54));
@@ -85,8 +81,14 @@ a {
 }
 
 footer {
-    margin-left: 25px;
+    margin: 25px;
     
+}
+
+@media (max-width: 768px) {
+    .banner {
+        max-width: 90%;
+    }
 }
 
 
