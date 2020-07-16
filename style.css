@@ -5,43 +5,63 @@ html {
     box-sizing: inherit;
 }
 
-body {
-    background-color: #0E1339;
+
+
+body {    
+    background: url('helens1.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: rgb(2,3,2); 
+    
     color: #6763BF;
     font-family: 'Merriweather', serif;
     font-family: 'Montserrat', sans-serif;
+    text-shadow: 1px 1px 1px #8E80BF;
     
 }
 
 .banner {
     display: flex;
-    justify-self: center;
+    justify-self: flex-start;
+    align-self: center;
     max-width: 100%;
 }
 
 .header {
     display: flex;
-    font-size: 1.5em;
+    font-size: 1.2em;
     justify-content: center;
-    padding: 5px;
+    padding: 10px;
     font-family: 'Merriweather', serif;
+    
 }
 
 main {
     display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
     border-radius: 20px;
     margin: 20px;
-    padding: 20px;
-    flex-wrap: wrap;
-    
+    padding: 20px;   
 }
 
 
 h3 {
     text-align: center;
 }
-    
 
+.description {
+    
+}
+    
+.examples {
+    background-image: linear-gradient(rgb(2,3,2),rgb(11,16,54));
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
 
 .item {
     display: flex;
@@ -66,6 +86,7 @@ a {
 
 footer {
     margin-left: 25px;
+    
 }
 
 
@@ -85,7 +106,9 @@ footer {
 
 @media (min-width: 1100px) {
 
-    .examples {
+
+
+    .container {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
