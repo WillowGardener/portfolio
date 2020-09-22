@@ -16,7 +16,8 @@ body {
     color: #6763BF;
     font-family: 'Merriweather', serif;
     font-family: 'Montserrat', sans-serif;
-    text-shadow: 1px 1px 1px #8E80BF;
+    text-shadow: 1px 1px 1px rgba(142,128,191,0.7);
+    
     
 }
 
@@ -37,6 +38,7 @@ body {
     justify-content: center;
     padding: 10px;
     font-family: 'Merriweather', serif;
+    text-shadow: 1px 1px 1px rgb(142,128,191);
     
 }
 
