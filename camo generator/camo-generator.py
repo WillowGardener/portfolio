@@ -7,14 +7,15 @@ ploverwidth, ploverheight = plover.size
 pixels = plover.load()
 
 #grabs a random pixel from the input image and returns its color
-def randompixel(image,width,height):
-    x = random.randint(1,width-1)
-    y = random.randint(1,height-1)
-    pix = image.getpixel((x,y))
+def randompixel(image,width,height,brush_size):
+    x = random.randint(1,width-(brush_size+1))
+    y = random.randint(1,height-(brush_size+1))
+    pix = image.crop((x,y,x+brush_size,y+brush_size))
     return pix
 
 
 def camodraw(width,height):
+    brush_size = int(input("enter brush size: "))
     pattern = Image.new('RGB', (width,height))
     draw = ImageDraw.Draw(pattern)
     x = 0
@@ -22,10 +23,10 @@ def camodraw(width,height):
     for j in range(height):
         x=0
         for i in range(width):
-            color = randompixel(plover,ploverwidth,ploverheight)
-            draw.point((x,y),color)
-            x+=1
-        y+=1
+            color = randompixel(plover,ploverwidth,ploverheight,brush_size)
+            pattern.paste(color,(x,y))
+            x+=brush_size
+        y+=brush_size
 
     pattern.show()
 
