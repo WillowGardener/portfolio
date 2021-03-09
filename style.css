@@ -57,12 +57,18 @@ h1 {
     display: flex;
     justify-content: center;
     align-self: center;
+    padding: 10px;
+    font-family: 'Merriweather', serif;
+    text-shadow: 1px 1px 1px rgb(142,128,191);
 }
 
 h2 {
     display: flex;
     justify-content: center;
     align-self: center;
+    padding: 10px;
+    font-family: 'Merriweather', serif;
+    text-shadow: 1px 1px 1px rgb(142,128,191);
 }
 
 
@@ -70,6 +76,9 @@ h3 {
     display: flex;
     justify-content: center;
     align-self: center;
+    padding: 10px;
+    font-family: 'Merriweather', serif;
+    text-shadow: 1px 1px 1px rgb(142,128,191);
 }
     
 .examples {
