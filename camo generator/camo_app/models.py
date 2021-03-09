@@ -18,7 +18,7 @@ class Camoimage(models.Model):
         return pix
 
     def camodraw(self):
-        brush_size = 3
+        brush_size = 10
         old_image = Image.open(self.old_image)
         old_image_width = old_image.width
         old_image_height = old_image.height
