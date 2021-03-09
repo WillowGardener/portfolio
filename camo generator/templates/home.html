@@ -26,12 +26,17 @@
         miniskirt. I don't know, the future is a complicated mystery.</p>
 
         <div id="input">
-            <input type = "file">
-            <button>Camo-ize!</button>
+            {% comment %} should I be using the home url for this or should I make a separate url for my camoize view? {% endcomment %}
+            <form action = "/camoize" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form }}
+                {% comment %} <input type = "file" name='baseimage'> {% endcomment %}
+                <button>Camo-ize!</button>
+            </form>
         </div>
 
         <div id = "output">
-
+            <img src="{{ pattern.new_image.url }}">
         </div>
 
     </body>
