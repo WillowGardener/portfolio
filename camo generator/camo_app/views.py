@@ -3,6 +3,11 @@ from django.http import HttpResponse
 from .models import Camoimage
 from .forms import ImageForm
 
+def delete_database(request):
+    if request.method == 'GET':
+        images = Camoimage.objects.all()
+        for item in images:
+            item.delete()
 
 def home(request):
     form = ImageForm()
@@ -19,7 +24,9 @@ def camoize(request):
 
             pattern.camodraw()
             context = {'pattern': pattern}
-    return render(request, 'home.html', context)
+    return render(request, 'camoize.html', context)
+
+
 
 
 

@@ -8,7 +8,7 @@ import random
 class Camoimage(models.Model):
     title = models.CharField(max_length=50)
     old_image = models.ImageField(upload_to='images')
-
+    brush_size = models.IntegerField(default=10)
     new_image = models.ImageField(default=None)
 
     def randompixel(self,old_image,image_width,image_height,brush_size):
@@ -18,7 +18,7 @@ class Camoimage(models.Model):
         return pix
 
     def camodraw(self):
-        brush_size = 10
+        brush_size = self.brush_size
         old_image = Image.open(self.old_image)
         old_image_width = old_image.width
         old_image_height = old_image.height

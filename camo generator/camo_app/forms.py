@@ -4,4 +4,4 @@ from .models import Camoimage
 class ImageForm(forms.ModelForm):
     class Meta:
         model = Camoimage
-        fields = ['old_image']
+        fields = ['brush_size','old_image']

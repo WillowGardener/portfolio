@@ -28,3 +28,14 @@ h1 {
     display: flex;
     justify-content: center;
   }
+
+  img {
+    margin: 10px;
+  }
+
+  a {
+    display: flex;
+    align-self: center;
+    color: green;
+    margin: 10px;
+  }
