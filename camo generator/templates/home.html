@@ -30,7 +30,7 @@
             <form action = "/camoize" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form }}
-                {% comment %} <input type = "file" name='baseimage'> {% endcomment %}
+                
                 <button>Camo-ize!</button>
             </form>
         </div>

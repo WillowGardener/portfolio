@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Chat Hub</title>
+        <link rel="stylesheet" href="/static/styles.css">
+    </head>
+
+    <body>
+        <div class="container">
+            {% for card in cards %}
+                <div class = "card">
+                    
+                    {{ card.text }}
+                    {% for link in card.link_set.all %}
+                        <a href='http://{{link.text}}'>{{link.text}}</a>
+                    {% endfor %}
+                    <a href="{% url 'hub_app:delete_card' card.id %}">
+                        <button>Nephew, Delete this</button>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+
+        <a href="{% url 'hub_app:add_card' %}">
+            <button>New Card</button>
+        </a>
+
+    </body>
+
+</html>

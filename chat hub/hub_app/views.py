@@ -1,7 +1,8 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import ListView, DetailView
 from .models import Card, Link
+from django.urls import reverse
 
 def home(request):
     cards = Card.objects.all()
@@ -14,5 +15,26 @@ def login(request):
     return render(request, 'login.html')
 
 def travis(request):
-    return render(request, 'travis.html')
+    cards = Card.objects.all()
+    context = {
+        'cards': cards,
+    }
+    return render(request, 'travis.html', context)
+
+def add_card(request):
+    Card.objects.create(name=None,text="")
+    cards = Card.objects.all()
+    context = {
+        'cards': cards,
+    }
+    return render(request, 'travis.html', context)
+
+def delete_card(request, card_id):
+    card_got = get_object_or_404(Card, pk=card_id)
+    card_got.delete()
+    cards = Card.objects.all()
+    context = {
+        'cards': cards,
+    }
+    return render(request, 'travis.html', context)
 
