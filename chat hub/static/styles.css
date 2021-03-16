@@ -1,0 +1,22 @@
+body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #0D0D0D;
+  color: #469193;
+  height: 100%;
+}
+
+.card {
+  border-radius: 10px;
+  background-color: #1D1D1B;
+  margin: 10px;
+  padding: 10px;
+  width: 25%;
+  min-height: 40%;
+}
+
+a {
+  color: #D0F2EF
+}

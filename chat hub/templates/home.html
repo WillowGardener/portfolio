@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/styles.css">
+    </head>
+
+    <body>
+        
+        {% for card in cards %}
+            <div class = "card">
+                {{ card.text }}
+                {% for link in card.link_set.all %}
+                    <a href='http://{{link.text}}'>{{link.text}}</a>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+    </body>
+
+</html>

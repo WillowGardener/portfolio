@@ -3,13 +3,17 @@ from django.http import HttpResponse
 from .models import Camoimage
 from .forms import ImageForm
 
-def delete_database(request):
-    if request.method == 'GET':
-        images = Camoimage.objects.all()
-        for item in images:
-            item.delete()
+
+    
 
 def home(request):
+
+    #this doesn't work. Why not?
+    images = Camoimage.objects.all()
+    for item in images:
+        item.delete()
+        
+
     form = ImageForm()
     context = {'form': form}
     return render(request, 'home.html', context) 
