@@ -8,14 +8,16 @@
     </head>
 
     <body>
-        <div class="container">
+        <div class="container" id="container">
             {% for card in cards %}
-                <div class = "card">
+                <div class = "card" id = "card{{card.id}}">
                     
                     {{ card.text }}
                     {% for link in card.link_set.all %}
                         <a href='http://{{link.text}}'>{{link.text}}</a>
                     {% endfor %}
+                    
+                    
                     <a href="{% url 'hub_app:delete_card' card.id %}">
                         <button>Nephew, Delete this</button>
                     </a>
@@ -23,10 +25,28 @@
             {% endfor %}
         </div>
 
-        <a href="{% url 'hub_app:add_card' %}">
-            <button>New Card</button>
-        </a>
+        
 
-    </body>
+        <a href="{% url 'hub_app:add_card' %}">
+            <button class = "created" id = "newCardButton">New Card</button>
+                
+        </a>
+        <script>
+            function createButton() {
+                let newBtn = document.createElement("BUTTON");
+                newBtn.innerHTML = "CLICK ME";
+                newBtn.classList.add("created");
+                document.body.appendChild(newBtn);
+                }
+            const container = document.getElementById("container")
+            let newCardButton = document.getElementById("newCardButton")
+            container.addEventListener("click", function(event) {
+                 
+                    console.log(event.target)
+                
+            })                 
+        </script>
+
+        </body>
 
 </html>
