@@ -16,8 +16,15 @@
                     {% for link in card.link_set.all %}
                         <a href='http://{{link.text}}'>{{link.text}}</a>
                     {% endfor %}
+                    <form action="{% url 'hub_app:edit_card' card.id %}" method="post">
+                        {% csrf_token %}
+                        <textarea class="text-field" name="card_text">{{card.text}}</textarea>
+                        <input type="submit">
+                    </form>
+                   
                     
                     
+
                     <a href="{% url 'hub_app:delete_card' card.id %}">
                         <button>Nephew, Delete this</button>
                     </a>
@@ -28,16 +35,11 @@
         
 
         <a href="{% url 'hub_app:add_card' %}">
-            <button class = "created" id = "newCardButton">New Card</button>
-                
+            <button class = "created" id = "newCardButton">New Card</button>                
         </a>
+
         <script>
-            function createButton() {
-                let newBtn = document.createElement("BUTTON");
-                newBtn.innerHTML = "CLICK ME";
-                newBtn.classList.add("created");
-                document.body.appendChild(newBtn);
-                }
+            
             const container = document.getElementById("container")
             let newCardButton = document.getElementById("newCardButton")
             container.addEventListener("click", function(event) {
