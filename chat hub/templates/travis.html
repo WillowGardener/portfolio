@@ -13,21 +13,42 @@
                 <div class = "card" id = "card{{card.id}}">
                     
                     {{ card.text }}
+
                     {% for link in card.link_set.all %}
                         <a href='http://{{link.text}}'>{{link.text}}</a>
                     {% endfor %}
-                    <form action="{% url 'hub_app:edit_card' card.id %}" method="post">
+
+                    <form action="{% url 'hub_app:edit_card' card.id %}" method="post" class="card-text-form" id="form{{card.id}}">
                         {% csrf_token %}
                         <textarea class="text-field" name="card_text">{{card.text}}</textarea>
-                        <input type="submit">
+                        <input type="submit" class="button" value="Update Card" id="submit{{card.id}}">
                     </form>
-                   
-                    
-                    
 
-                    <a href="{% url 'hub_app:delete_card' card.id %}">
-                        <button>Nephew, Delete this</button>
-                    </a>
+                    <form action="{% url 'hub_app:add_link' card.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="link_text">
+                        <input type="submit" value="New URL" class="button">
+                    </form>
+
+                    <div class="buttons">
+                        <button class="button" id="button{{card.id}}">Edit Text</button>
+                        
+                        <a href="{% url 'hub_app:delete_card' card.id %}">
+                            <button class="button">Delete Card</button>
+                        </a>
+                    </div>
+
+                    <script>
+                        let button = document.getElementById("button{{card.id}}")
+                        let submit = document.getElementById("submit{{card.id}}")
+                        let cardForm = document.getElementById("form{{card.id}}")
+                        button.addEventListener("click", function() {
+                            cardForm.style.display = "block"
+                        })
+                        submit.addEventListener("click", function() {
+                            cardForm.style.display = "none"
+                        })
+                    </script>
                 </div>
             {% endfor %}
         </div>
@@ -35,7 +56,7 @@
         
 
         <a href="{% url 'hub_app:add_card' %}">
-            <button class = "created" id = "newCardButton">New Card</button>                
+            <button class = "button" id = "newCardButton">New Card</button>                
         </a>
 
         <script>

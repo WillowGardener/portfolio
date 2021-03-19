@@ -36,6 +36,32 @@ a {
   margin: 10px;
 }
 
-button {
+.button {
   margin: 10px;
+  border-radius: 10px;
+  background-color: rgba(107, 107, 107, 0.377);
+  color: #469193;
+  padding: 5px;
+  border: 1px solid rgba(107, 107, 107, 0.377);
 }
+
+.card-text-form {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text-field {
+  max-width: 90%;
+  border-radius: 10px;
+  background-color: rgba(107, 107, 107, 0.377);
+  color: #469193;
+  padding: 5px;
+  border: 1px solid rgba(107, 107, 107, 0.377);
+}
+
+/* .card-text-form {
+  display: none;
+} */
+

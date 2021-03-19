@@ -17,6 +17,7 @@ def login(request):
 
 def travis(request):
     cards = Card.objects.all()
+    
     context = {
         'cards': cards,
     }
@@ -24,6 +25,16 @@ def travis(request):
 
 def add_card(request):
     Card.objects.create(name=None,text="")
+    cards = Card.objects.all()
+    context = {
+        'cards': cards,
+    }
+    return render(request, 'travis.html', context)
+
+def add_link(request, card_id):
+    card_got = get_object_or_404(Card,pk=card_id)
+    link_text = request.POST.get('link_text')
+    Link.objects.create(text=link_text, card=card_got)
     cards = Card.objects.all()
     context = {
         'cards': cards,
