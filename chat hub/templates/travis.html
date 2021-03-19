@@ -16,6 +16,9 @@
 
                     {% for link in card.link_set.all %}
                         <a href='http://{{link.text}}'>{{link.text}}</a>
+                        <a href='{% url "hub_app:delete_link" link.id %}'>
+                        <button class="button">Delete Link</button>
+                        </a>
                     {% endfor %}
 
                     <form action="{% url 'hub_app:edit_card' card.id %}" method="post" class="card-text-form" id="form{{card.id}}">

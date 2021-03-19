@@ -50,6 +50,15 @@ def delete_card(request, card_id):
     }
     return render(request, 'travis.html', context)
 
+def delete_link(request, link_id):
+    link_got = get_object_or_404(Link, pk=link_id)
+    link_got.delete()
+    cards = Card.objects.all()
+    context = {
+        'cards': cards,
+    }
+    return render(request, 'travis.html', context)
+
 
 def edit_card(request, card_id):
     card_got = get_object_or_404(Card,pk=card_id)
