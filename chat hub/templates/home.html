@@ -8,6 +8,10 @@
     </head>
 
     <body>
+        <header>
+            <h1> Travis' Happy Skype Hub </h1>
+        </header>
+        <a href="{% url 'hub_app:travis' %}">Edit the Stuff (for Travises only)</a>
         <div class="container">
             {% for card in cards %}
                 <div class = "card">

@@ -7,6 +7,26 @@ body {
   background-color: #0D0D0D;
   color: #469193;
   height: 100%;
+  
+}
+
+header {
+  display: flex;
+  align-items: space-between;
+}
+
+h1 {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin: 20px;
+}
+
+#logout {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
 }
 
 .container {
@@ -14,6 +34,7 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  min-width: 90%;
 
 }
 
@@ -29,6 +50,7 @@ body {
   width: 25%;
   min-height: 40%;
   min-height: 30px;
+  box-shadow: 1px 1px #3b3b38
 }
 
 a {
@@ -43,6 +65,11 @@ a {
   color: #469193;
   padding: 5px;
   border: 1px solid rgba(107, 107, 107, 0.377);
+  box-shadow: 1px 1px rgb(107, 107, 107, 0.9)
+}
+
+form {
+  width: 100%;
 }
 
 .card-text-form {
@@ -50,16 +77,33 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 }
 
 .text-field {
-  max-width: 90%;
+  min-width: 90%;
+  resize: vertical;
   border-radius: 10px;
   background-color: rgba(107, 107, 107, 0.377);
   color: #469193;
   padding: 5px;
   border: 1px solid rgba(107, 107, 107, 0.377);
+  box-shadow: 1px 1px rgb(107, 107, 107, 0.9)
 }
+
+.edit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#add_url {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
 
 /* .card-text-form {
   display: none;

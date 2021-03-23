@@ -4,6 +4,8 @@ from django.views.generic import ListView, DetailView
 from .models import Card, Link
 from django.urls import reverse
 from .forms import CardForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 
 def home(request):
     cards = Card.objects.all()
@@ -12,8 +14,21 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
-def login(request):
-    return render(request, 'login.html')
+def login_user(request):
+    if request.method == 'POST':
+        print(request.POST)
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        print(user)
+        if user is not None:
+            login(request, user)
+    return HttpResponseRedirect(reverse('hub_app:travis'))
+
+def logout_user(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('hub_app:travis'))
+
 
 def travis(request):
     cards = Card.objects.all()
