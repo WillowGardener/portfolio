@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block content %}
+
+    <div class = 'post-list'>
+        {% for post in posts %}
+            {% for card in post.card_set.all %}
+                {{card.title}}
+                <br>
+                {% for image in card.image_set.all %}
+                    {% if image.position == 'left' %}
+                        <img src='{{ image.image.url }}'>
+                    {% endif %}
+                {% endfor %}
+
+                {{ card.text }}
+
+                {% for image in card.image_set.all %}
+                    {% if image.position == 'right' %}
+                        <img src='{{ image.image.url }}'>
+                    {% endif %}
+                {% endfor %}
+                <br>
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endblock %}
