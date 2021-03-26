@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <a href="{% url 'cook_hook_book_app:new_card' post.id %}">
+        <button>New Card</button>
+    </a>
+    {% for card in post.card_set.all %}
+        <div>
+            {{card.title}}
+            <form action="{% url 'cook_hook_book_app:card_title' card.id %}" method="post">
+                {% csrf_token %}
+                <input type="text" name="card_title">
+                <input type="submit" value="Add/Change Paragraph Header">
+            </form>
+
+            <br>
+            {% for image in card.image_set.all %}
+                {% if image.position == 'left' %}
+                    <img src='{{ image.image.url }}'>
+                {% endif %}
+
+            {% endfor %}
+            <form action="{% url 'cook_hook_book_app:add_image' card.id %}" method="POST">
+                {% csrf_token %}
+                <input type="file" name="image">
+                <input type="text" name="caption">
+                <input type="hidden" value="left" name="position">
+                <input type="submit" value="upload image">
+            </form>
+
+            {{ card.text }}
+            <form action="{% url 'cook_hook_book_app:card_text' card.id %}" method="POST">
+                {% csrf_token %}
+                <textarea name="card_text">{{ card.text }}</textarea>
+                <input type="submit" value="Add Paragraph">
+            </form>
+
+            {% for image in card.image_set.all %}
+                {% if image.position == 'right' %}
+                    <img src='{{ image.image.url }}'>
+                {% endif %}
+            {% endfor %}
+            <form action="{% url 'cook_hook_book_app:add_image' card.id %}" method="POST">
+                {% csrf_token %}
+                <input type="file" name="image">
+                <input type="text" name="caption">
+                <input type="hidden" value="left" name="position">
+                <input type="submit" value="upload image">
+            </form>
+
+        </div>
+    {% endfor %}
+
+        
+
+
+
+{% endblock %}

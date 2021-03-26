@@ -2,8 +2,8 @@
 {% load static %}
 
 {% block content %}
-    <form action = "{% url 'cook_hook_book_app:create_post' %}">
-
+    <form action = "{% url 'cook_hook_book_app:add_content' post.id %}" method="post">
+        {% csrf_token %}
         <label for="post_title">Post Title:</label><br>
         <input type="text" name="post_title">
 
@@ -13,29 +13,7 @@
             <option value="crochet">Crochet</option>
             <option value="book_reviews">Book Reviews</option>
         </select>
-
-        {% for card in new_post.card_set.all %}
-            {{card.title}}
-            <br>
-            {% for image in card.image_set.all %}
-                {% if image.position == 'left' %}
-                    <img src='{{ image.image.url }}'>
-                {% endif %}
-            {% endfor %}
-
-            {{ card.text }}
-
-            {% for image in card.image_set.all %}
-                {% if image.position == 'right' %}
-                    <img src='{{ image.image.url }}'>
-                {% endif %}
-            {% endfor %}
-
-        {% endfor %}
-
-        <a href="{% url 'cook_hook_book_app:new_card' new_post.id %}">
-            <button>New Card</button>
-        </a>
+        <input type="submit" value="add content">
 
     </form>
 
