@@ -1,0 +1,8 @@
+h1 {
+    color: green
+}
+
+#canvas {
+    border: 1px solid black;
+    background-image: url('grass background.png');
+}

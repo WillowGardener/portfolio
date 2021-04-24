@@ -21,7 +21,7 @@
                 {% endif %}
 
             {% endfor %}
-            <form action="{% url 'cook_hook_book_app:add_image' card.id %}" method="POST">
+            <form action="{% url 'cook_hook_book_app:add_image' card.id %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="file" name="image">
                 <input type="text" name="caption">
@@ -41,7 +41,7 @@
                     <img src='{{ image.image.url }}'>
                 {% endif %}
             {% endfor %}
-            <form action="{% url 'cook_hook_book_app:add_image' card.id %}" method="POST">
+            <form action="{% url 'cook_hook_book_app:add_image' card.id %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="file" name="image">
                 <input type="text" name="caption">

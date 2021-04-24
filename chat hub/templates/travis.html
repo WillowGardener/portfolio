@@ -71,11 +71,11 @@
         </div>
 
         
-
-        <a href="{% url 'hub_app:add_card' %}">
-            <button class = "button" id = "newCardButton">New Card</button>                
-        </a>
-
+        {% if user.is_authenticated %}
+            <a href="{% url 'hub_app:add_card' %}">
+                <button class = "button" id = "newCardButton">New Card</button>                
+            </a>
+        {% endif %}
         
 
         </body>

@@ -38,6 +38,7 @@ def add_image(request, card_id):
     card = get_object_or_404(Card,pk=card_id)
     if request.method == 'POST':
         image = Image.objects.create(card=card)
+        #multi-value dict key error on line 42; research django documentation on how to post images tomorrow 
         image.image = request.POST["image"]
         image.position = request.POST["position"]
         image.caption = request.POST["caption"]
