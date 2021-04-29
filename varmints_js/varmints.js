@@ -1,8 +1,10 @@
-let width = document.getElementById("canvas").width;
-let height = document.getElementById("canvas").height;
+let width = document.getElementById("layer1").width;
+let height = document.getElementById("layer1").height;
 const title = document.getElementById("title")
-const ctx = document.getElementById("canvas").getContext("2d");
-const cnv = document.getElementById("canvas");
+const ctx = document.getElementById("layer1").getContext("2d");
+const cnv = document.getElementById("layer1");
+const ctx2 = document.getElementById("layer2").getContext("2d");
+const cnv2 = document.getElementById("layer2");
 let halt = document.getElementById('halt-simulation')
 let running = true
 let prey_list = []
@@ -16,7 +18,9 @@ class Grass {
     constructor(){
         this.x = Math.round(Math.random()*width)
         this.y = Math.round(Math.random()*height)
-        // this.img = "../images/grass.png"
+        let grassImage = document.createElement('img')
+        grassImage.src = "grass.png"
+        this.img = grassImage
         this.energy = 5
     }
 }
@@ -53,10 +57,16 @@ class Animal {
         }
 
     }
+    
 }
 
 class Prey extends Animal {
-
+    constructor(){
+        super()
+        let preyImage = document.createElement('img')
+        preyImage.src = "rabbit.png"
+        this.img = preyImage
+    }
 }
 
 function startup() {
@@ -68,14 +78,20 @@ function startup() {
 
 function main_loop() {
     if (running === true) {
-        
+        ctx.clearRect(0,0,width,height)
+    
+
         let grass = new Grass()
         grass_list.push(grass)
-        let grassImage = document.createElement('img')
-        grassImage.src = "grass.png"
-        ctx.drawImage(grassImage,grass.x,grass.y)
-
         
+        for (i=0;i<grass_list.length;i++){
+            ctx2.drawImage(grass.img,grass.x,grass.y)
+        }
+
+        for (i=0;i<prey_list.length;i++){
+            prey_list[i].move()
+            ctx.drawImage(prey_list[i].img,prey_list[i].x,prey_list[i].y)
+        }      
 
         window.requestAnimationFrame(main_loop)
     }
