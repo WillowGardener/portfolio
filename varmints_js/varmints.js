@@ -3,8 +3,7 @@ let height = document.getElementById("layer1").height;
 const title = document.getElementById("title")
 const ctx = document.getElementById("layer1").getContext("2d");
 const cnv = document.getElementById("layer1");
-const ctx2 = document.getElementById("layer2").getContext("2d");
-const cnv2 = document.getElementById("layer2");
+
 let halt = document.getElementById('halt-simulation')
 let running = true
 let prey_list = []
@@ -83,15 +82,17 @@ function main_loop() {
 
         let grass = new Grass()
         grass_list.push(grass)
-        
-        for (i=0;i<grass_list.length;i++){
-            ctx2.drawImage(grass.img,grass.x,grass.y)
-        }
 
-        for (i=0;i<prey_list.length;i++){
-            prey_list[i].move()
-            ctx.drawImage(prey_list[i].img,prey_list[i].x,prey_list[i].y)
-        }      
+        grass_list.forEach(function(grass){
+            ctx.drawImage(grass.img,grass.x,grass.y)
+        })
+        
+        prey_list.forEach(function(prey){
+            prey.move()
+            ctx.drawImage(prey.img,prey.x,prey.y)
+        })
+
+           
 
         window.requestAnimationFrame(main_loop)
     }
