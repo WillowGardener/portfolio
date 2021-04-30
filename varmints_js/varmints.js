@@ -6,8 +6,8 @@ const cnv = document.getElementById("layer1");
 
 let halt = document.getElementById('halt-simulation')
 let running = true
-let prey_list = []
-let grass_list = []
+let preyList = []
+let grassList = []
 
 halt.addEventListener("click", function() {
     running = false
@@ -24,6 +24,8 @@ class Grass {
     }
 }
 
+const testGrass = new Grass()
+
 class Animal {
     constructor(){
         this.age = 0
@@ -32,8 +34,37 @@ class Animal {
         this.y = Math.round(Math.random()*height)
         this.awareness = 25
         this.speed = 3
+        this.size = 16
         this.x_move = Math.round(Math.random()*this.speed)
         this.y_move = Math.round(Math.random()*this.speed)
+    }
+    checkProximity(target) {
+        let distance_x = Math.abs(this.x-target.x)
+        let distance_y = Math.abs(this.y-target.y)
+        let distance = Math.sqrt(distance_x*distance_x+distance_y*distance_y)
+        return distance
+    }
+    checkAdjacent(target) {
+        let distance = this.checkProximity(target)
+        if (distance < 4) {
+            return true
+        }
+    }
+    eat(target_array){
+        
+        target_array.forEach((target) => {
+            
+            let proximity = this.checkProximity(target)
+            let edible = this.checkAdjacent(target)
+            if (edible === true) {
+                this.energy += target.energy
+                target_array.splice(target)
+                
+            }
+            else if (proximity <= this.awareness) {
+                this.moveToward(target)
+            }
+        })
     }
     move() {
         this.x += this.x_move
@@ -56,6 +87,21 @@ class Animal {
         }
 
     }
+    moveToward(target) {
+        if (this.x >= target.x) {
+            this.x_move = -1*this.speed
+        }
+        else if (this.x <= target.x) {
+            this.x_move = this.speed
+        }
+        if (this.y >= target.y) {
+            this.y_move = -1*this.speed
+        }
+        else if (this.y <= target.y) {
+            this.y_move = this.speed
+        }
+    }
+    
     
 }
 
@@ -69,9 +115,9 @@ class Prey extends Animal {
 }
 
 function startup() {
-    for (i=0; i<20; i++) {
+    for (i=0; i<2; i++) {
         let prey = new Prey()
-        prey_list.push(prey)
+        preyList.push(prey)
     }
 }
 
@@ -81,13 +127,14 @@ function main_loop() {
     
 
         let grass = new Grass()
-        grass_list.push(grass)
+        grassList.push(grass)
 
-        grass_list.forEach(function(grass){
+        grassList.forEach(function(grass){
             ctx.drawImage(grass.img,grass.x,grass.y)
         })
         
-        prey_list.forEach(function(prey){
+        preyList.forEach(function(prey){
+            prey.eat(grassList)
             prey.move()
             ctx.drawImage(prey.img,prey.x,prey.y)
         })
