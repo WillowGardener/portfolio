@@ -46,19 +46,21 @@ class Animal {
     }
     checkAdjacent(target) {
         let distance = this.checkProximity(target)
-        if (distance < 4) {
+        if (distance < this.size) {
             return true
         }
     }
     eat(target_array){
         
-        target_array.forEach((target) => {
+        target_array.forEach((target,i) => {
             
             let proximity = this.checkProximity(target)
             let edible = this.checkAdjacent(target)
             if (edible === true) {
                 this.energy += target.energy
-                target_array.splice(target)
+                //goddamn fucking javascript. I need to create a sophisticated function just to remove an item from the array; splice will not
+                //work properly if you just input the value you want removed. Need to find the index
+                target_array.splice(i,1)
                 
             }
             else if (proximity <= this.awareness) {
@@ -115,7 +117,7 @@ class Prey extends Animal {
 }
 
 function startup() {
-    for (i=0; i<2; i++) {
+    for (i=0; i<10; i++) {
         let prey = new Prey()
         preyList.push(prey)
     }
