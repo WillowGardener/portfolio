@@ -6,6 +6,7 @@ const cnv = document.getElementById("layer1");
 
 let halt = document.getElementById('halt-simulation')
 let running = true
+let predList = []
 let preyList = []
 let grassList = []
 
@@ -103,6 +104,20 @@ class Animal {
             this.y_move = this.speed
         }
     }
+    moveAway(target) {
+        if (this.x >=  target.x) {
+            this.x_move = this.speed
+        }
+        else if (this.x <= target.x) {
+            this.x_move = -1 * this.speed
+        }
+        if (this.y >= target.y) {
+            this.y_move = this.speed
+        }
+        else if (this.y <= target.y) {
+            this.y_move = -1 * this.speed
+        }
+    }
     
     
 }
@@ -116,10 +131,23 @@ class Prey extends Animal {
     }
 }
 
+class Predator extends Animal {
+    constructor(){
+        super()
+        let predImage = document.createElement('img')
+        predImage.src = "fox.png"
+        this.img = predImage
+    }
+}
+
 function startup() {
-    for (i=0; i<10; i++) {
+    for (i=0; i<20; i++) {
         let prey = new Prey()
         preyList.push(prey)
+    }
+    for (i=0; i<2; i++) {
+        let pred = new Predator()
+        predList.push(pred)
     }
 }
 
@@ -136,9 +164,21 @@ function main_loop() {
         })
         
         preyList.forEach(function(prey){
+            predList.forEach((pred, i) => {
+                let danger = prey.checkProximity(pred)
+                if (danger < prey.awareness) {
+                    prey.moveAway(pred)
+                }
+            })
             prey.eat(grassList)
             prey.move()
             ctx.drawImage(prey.img,prey.x,prey.y)
+        })
+
+        predList.forEach(function(pred) {
+            pred.eat(preyList)
+            pred.move()
+            ctx.drawImage(pred.img,pred.x,pred.y)
         })
 
            
