@@ -21,7 +21,7 @@ class Grass {
         let grassImage = document.createElement('img')
         grassImage.src = "grass.png"
         this.img = grassImage
-        this.energy = 5
+        this.energy = 10
     }
 }
 
@@ -30,15 +30,36 @@ const testGrass = new Grass()
 class Animal {
     constructor(){
         this.age = 0
+        this.energy = 20
+        const sexList = ["female", "male"]
+        this.sex = sexList[Math.round(Math.random())]
         this.pregnant = false
         this.x = Math.round(Math.random()*width)
         this.y = Math.round(Math.random()*height)
-        this.awareness = 25
+        this.awareness = 30
         this.speed = 3
         this.size = 16
         this.x_move = Math.round(Math.random()*this.speed)
         this.y_move = Math.round(Math.random()*this.speed)
+        this.gestation = 3000
+        this.maxLitterSize = 3
+        this.counter = 0
+        this.metabolism = this.speed/6 + this.awareness/60
+        this.greed = 50
+        
+        this.getOlder()
+        this.getHungry()
     }
+    getOlder() {setInterval(()=>{
+        this.age+=1
+        
+    },12000)
+    }
+    getHungry() { setInterval( ()=> {
+        this.energy -= this.metabolism
+    },100)
+    }
+
     checkProximity(target) {
         let distance_x = Math.abs(this.x-target.x)
         let distance_y = Math.abs(this.y-target.y)
@@ -59,8 +80,7 @@ class Animal {
             let edible = this.checkAdjacent(target)
             if (edible === true) {
                 this.energy += target.energy
-                //goddamn fucking javascript. I need to create a sophisticated function just to remove an item from the array; splice will not
-                //work properly if you just input the value you want removed. Need to find the index
+                
                 target_array.splice(i,1)
                 
             }
@@ -119,6 +139,23 @@ class Animal {
         }
     }
     
+    // mate = (speciesList) => {
+        
+    //     if (this.sex === "female" && this.pregnant === false && this.age >= 1)  {
+    //         speciesList.forEach((boy,i) => {
+    //             if (boy.sex === "male") {
+    //                 let mateable = this.checkProximity(boy)
+    //                 if (mateable < this.awareness) {
+    //                     this.pregnant = true
+    //                     setTimeout(this.giveBirth,3000)
+    //                     break
+                        
+    //                 }
+    //             }
+    //         })
+    //     }}
+    // }
+    
     
 }
 
@@ -129,11 +166,22 @@ class Prey extends Animal {
         preyImage.src = "rabbit.png"
         this.img = preyImage
     }
+    giveBirth() {
+            
+            let child = new Prey()
+            child.x = this.x
+            child.y = this.y
+            preyList.push(child)
+            this.pregnant = false
+            
+        
+    }
 }
 
 class Predator extends Animal {
     constructor(){
         super()
+        this.gestation = 6000
         let predImage = document.createElement('img')
         predImage.src = "fox.png"
         this.img = predImage
@@ -141,14 +189,20 @@ class Predator extends Animal {
 }
 
 function startup() {
-    for (i=0; i<20; i++) {
+    for (i=0; i<10; i++) {
         let prey = new Prey()
+        
         preyList.push(prey)
     }
-    for (i=0; i<2; i++) {
+    for (i=0; i<0; i++) {
         let pred = new Predator()
         predList.push(pred)
     }
+    //Maintenance function to check data yearly
+    setInterval( function() {
+        console.log(preyList)
+    },12000)
+    
 }
 
 function main_loop() {
@@ -170,8 +224,29 @@ function main_loop() {
                     prey.moveAway(pred)
                 }
             })
-            prey.eat(grassList)
+            if (prey.energy < prey.greed) {
+                prey.eat(grassList)
+            }
+            if (prey.sex === 'female' && prey.age >= 1 && prey.pregnant === false) {
+                
+                
+
+                prey.pregnant = true
+                setTimeout(() => {
+                    //Causes the prey to give birth after 3 seconds
+                    for (let i=0;i<prey.maxLitterSize;i++) {
+                        let child = new Prey()
+                        child.x = prey.x
+                        child.y = prey.y
+                        preyList.push(child)
+                         
+                    }
+                    prey.pregnant = false
+                    
+                },3000)
+            }
             prey.move()
+            
             ctx.drawImage(prey.img,prey.x,prey.y)
         })
 
