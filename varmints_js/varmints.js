@@ -10,6 +10,9 @@ let predList = []
 let preyList = []
 let grassList = []
 
+let preyStartNumber = 32
+let predatorStartNumber = 4
+
 halt.addEventListener("click", function() {
     running = false
 })
@@ -43,8 +46,8 @@ class Animal {
         this.x_move = Math.round(Math.random()*this.speed)
         this.y_move = Math.round(Math.random()*this.speed)
         this.gestation = 3000
-        this.maxLitterSize = 1
-        this.counter = 0
+        this.maxLitterSize = 3
+        
         this.metabolism = this.speed/8 + this.awareness/80
         this.greed = 50 + Math.random() *50
         this.libido = 35
@@ -180,6 +183,13 @@ class Prey extends Animal {
                             child.energy = childSupport/litterSize
                             child.x = this.x
                             child.y = this.y
+
+                            child.speed = (Math.random()/2+.75) * this.speed
+                            child.awareness = (Math.random()/2+.75) * this.awareness
+                            child.greed = (Math.random()/2+.75) * this.greed
+                            child.libido = (Math.random()/2+.75) * this.libido
+                            child.parentalInvestment = (Math.random()/2+.75) * this.parentalInvestment
+
                             thisList.push(child)
                             
                         }
@@ -196,30 +206,44 @@ class Predator extends Animal {
     constructor(){
         super()
         this.gestation = 6000
+        this.maxLitterSize = 2
+        this.maxAge = 50
+        this.speed = 4
         let predImage = document.createElement('img')
         predImage.src = "fox.png"
         this.img = predImage
     }
     mate = (thisList) => {
         
-        if (this.sex === 'female' && this.age >= 1 && this.pregnant === false) {
+        if (this.sex === 'female' && this.age >= 1 && this.pregnant === false && this.energy >= this.libido) {
             thisList.forEach((boy,i) => {
                 let mateable = this.checkProximity(boy)
-                if (mateable <= this.awareness && this.pregnant === false) { 
+                if (mateable <= this.awareness && this.pregnant === false && boy.energy >= boy.libido) { 
                     this.pregnant = true
+                    boy.energy -= boy.energy * boy.parentalInvestment
                     //Causes the prey to give birth after 3 seconds
                     setTimeout(() => {
-                        
-                        for (let i=0;i<this.maxLitterSize;i++) {
+                        let childSupport = this.parentalInvestment * this.energy
+                        this.energy -= childSupport
+                        let litterSize = Math.round(Math.random()*this.maxLitterSize)
+                        for (let i=0;i<litterSize;i++) {
                             let child = new Predator()
+                            child.energy = childSupport/litterSize
                             child.x = this.x
                             child.y = this.y
+
+                            child.speed = (Math.random()/2+.75) * this.speed
+                            child.awareness = (Math.random()/2+.75) * this.awareness
+                            child.greed = (Math.random()/2+.75) * this.greed
+                            child.libido = (Math.random()/2+.75) * this.libido
+                            child.parentalInvestment = (Math.random()/2+.75) * this.parentalInvestment
+
                             thisList.push(child)
                             
                         }
                         this.pregnant = false
                         
-                    },3000)
+                    },this.gestation)
                 }
             })
         }
@@ -227,18 +251,18 @@ class Predator extends Animal {
 }
 
 function startup() {
-    for (i=0; i<10; i++) {
+    for (i=0; i<preyStartNumber; i++) {
         let prey = new Prey()
         
         preyList.push(prey)
     }
-    for (i=0; i<0; i++) {
+    for (i=0; i<predatorStartNumber; i++) {
         let pred = new Predator()
         predList.push(pred)
     }
     //Maintenance function to check data yearly
     setInterval( function() {
-        console.log(preyList)
+        console.log(predList)
     },12000)
     
 }
@@ -267,28 +291,7 @@ function main_loop() {
             }
 
             prey.mate(preyList)
-            // if (prey.sex === 'female' && prey.age >= 1 && prey.pregnant === false) {
-            //     preyList.forEach((boy,i) => {
-            //         let mateable = prey.checkProximity(boy)
-            //         if (mateable <= prey.awareness && prey.pregnant === false) { 
-            //             prey.pregnant = true
-            //             //Causes the prey to give birth after 3 seconds
-            //             setTimeout(() => {
-                            
-            //                 for (let i=0;i<prey.maxLitterSize;i++) {
-            //                     let child = new Prey()
-            //                     child.x = prey.x
-            //                     child.y = prey.y
-            //                     preyList.push(child)
-                                
-            //                 }
-            //                 prey.pregnant = false
-                            
-            //             },3000)
-            //         }
-            //     })
-            // }
-
+            
             prey.move()
 
             //Kills prey who have no energy--they starve
@@ -299,9 +302,16 @@ function main_loop() {
             ctx.drawImage(prey.img,prey.x,prey.y)
         })
 
-        predList.forEach(function(pred) {
-            pred.eat(preyList)
+        predList.forEach(function(pred,i) {
+            if (pred.energy < pred.greed) {
+                pred.eat(preyList)
+            }
+            pred.mate(predList)
             pred.move()
+
+            if (pred.energy <= 0) {
+                predList.splice(i,1)
+            }
             ctx.drawImage(pred.img,pred.x,pred.y)
         })
 
