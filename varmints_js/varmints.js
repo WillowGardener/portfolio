@@ -42,10 +42,11 @@ class Animal {
         this.x_move = Math.round(Math.random()*this.speed)
         this.y_move = Math.round(Math.random()*this.speed)
         this.gestation = 3000
-        this.maxLitterSize = 3
+        this.maxLitterSize = 1
         this.counter = 0
         this.metabolism = this.speed/6 + this.awareness/60
         this.greed = 50
+        this.libido = 35
         
         this.getOlder()
         this.getHungry()
@@ -72,6 +73,8 @@ class Animal {
             return true
         }
     }
+    
+    
     eat(target_array){
         
         target_array.forEach((target,i) => {
@@ -139,22 +142,22 @@ class Animal {
         }
     }
     
-    // mate = (speciesList) => {
+    mate = (speciesList) => {
         
-    //     if (this.sex === "female" && this.pregnant === false && this.age >= 1)  {
-    //         speciesList.forEach((boy,i) => {
-    //             if (boy.sex === "male") {
-    //                 let mateable = this.checkProximity(boy)
-    //                 if (mateable < this.awareness) {
-    //                     this.pregnant = true
-    //                     setTimeout(this.giveBirth,3000)
-    //                     break
+        if (this.sex === "female" && this.pregnant === false && this.age >= 1)  {
+            speciesList.forEach((boy,i) => {
+                if (boy.sex === "male") {
+                    let mateable = this.checkProximity(boy)
+                    if (mateable < this.awareness) {
+                        this.pregnant = true
+                        setTimeout(this.giveBirth,3000)
                         
-    //                 }
-    //             }
-    //         })
-    //     }}
-    // }
+                        
+                    }
+                }
+            })
+        }
+    }
     
     
 }
@@ -228,24 +231,33 @@ function main_loop() {
                 prey.eat(grassList)
             }
             if (prey.sex === 'female' && prey.age >= 1 && prey.pregnant === false) {
-                
-                
-
-                prey.pregnant = true
-                setTimeout(() => {
-                    //Causes the prey to give birth after 3 seconds
-                    for (let i=0;i<prey.maxLitterSize;i++) {
-                        let child = new Prey()
-                        child.x = prey.x
-                        child.y = prey.y
-                        preyList.push(child)
-                         
+                preyList.forEach((boy,i) => {
+                    let mateable = prey.checkProximity(boy)
+                    if (mateable <= prey.awareness && prey.pregnant === false) { 
+                        prey.pregnant = true
+                        //Causes the prey to give birth after 3 seconds
+                        setTimeout(() => {
+                            
+                            for (let i=0;i<prey.maxLitterSize;i++) {
+                                let child = new Prey()
+                                child.x = prey.x
+                                child.y = prey.y
+                                preyList.push(child)
+                                
+                            }
+                            prey.pregnant = false
+                            
+                        },3000)
                     }
-                    prey.pregnant = false
-                    
-                },3000)
+                })
             }
+
             prey.move()
+
+            //Kills prey who have no energy--they starve
+            if (prey.energy <= 0) {
+                preyList.splice(i,1)
+            }
             
             ctx.drawImage(prey.img,prey.x,prey.y)
         })
