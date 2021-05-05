@@ -9,14 +9,88 @@ let predList = []
 let preyList = []
 let grassList = []
 
+let grassSpawnRate = 20
+let grassEnergyMin = 20
+let grassEnergyMax = 30
+
 let preyStartNumber = 32
-let predatorStartNumber = 4
+let preyEnergyMin = 30
+let preyEnergyMax = 30
+let preySpeedMin = 3
+let preySpeedMax = 4
+let preyAwarenessMin = 30
+let preyAwarenessMax = 40
+let preyGreedMin = 50
+let preyGreedMax = 70
+let preyLibidoMin = 30
+let preyLibidoMax = 40
+let preyGestation = 3000
+let preyLitterMin = 1
+let preyLitterMax = 3
+let preyInvestmentMin = .25
+let preyInvestmentMax = .5
+
+let predatorStartNumber = 6
+let predatorEnergyMin = 40
+let predatorEnergyMax = 40
+let predatorSpeedMin = 4
+let predatorSpeedMax = 5
+let predatorAwarenessMin = 30
+let predatorAwarenessMax = 40
+let predatorGreedMin = 50
+let predatorGreedMax = 70
+let predatorLibidoMin = 30
+let predatorLibidoMax = 40
+let predatorGestation = 6000
+let predatorLitterMin = 1
+let predatorLitterMax = 3
+let predatorInvestmentMin = .25
+let predatorInvestmentMax = .5
 
 let begin = document.getElementById('begin-simulation')
 let halt = document.getElementById('halt-simulation')
 
 begin.addEventListener("click", function() {
     if (running === false) {
+
+        grassEnergyMin = parseFloat(document.getElementById("grass-energy-min").value)
+        grassEnergyMax = parseFloat(document.getElementById("grass-energy-max").value)
+        grassSpawnRate = 1000/parseInt(document.getElementById('grass-spawn-rate').value)
+        
+        preyStartNumber = parseInt(document.getElementById('prey-start-number').value)
+        preyEnergyMin = parseFloat(document.getElementById('prey-energy-min').value)
+        preyEnergyMax = parseFloat(document.getElementById('prey-energy-max').value)
+        preySpeedMin = parseFloat(document.getElementById('prey-speed-min').value)
+        preySpeedMax = parseFloat(document.getElementById('prey-speed-max').value)
+        preyAwarenessMin = parseFloat(document.getElementById('prey-awareness-min').value)
+        preyAwarenessMax = parseFloat(document.getElementById('prey-awareness-max').value)
+        preyGreedMin = parseFloat(document.getElementById('prey-greed-min').value)
+        preyGreedMax = parseFloat(document.getElementById('prey-greed-max').value)
+        preyLibidoMin = parseFloat(document.getElementById('prey-libido-min').value)
+        preyLibidoMax = parseFloat(document.getElementById('prey-libido-max').value)
+        preyGestation = parseInt(document.getElementById('prey-gestation-length').value)*1000
+        preyLitterMin = parseInt(document.getElementById('prey-litter-min').value)
+        preyLitterMax = parseInt(document.getElementById('prey-litter-max').value)
+        preyInvestmentMin = parseFloat(document.getElementById('prey-investment-min').value)
+        preyInvestmentMax = parseFloat(document.getElementById('prey-investment-max').value)
+
+        predatorStartNumber = parseInt(document.getElementById('predator-start-number').value)
+        predatorEnergyMin = parseFloat(document.getElementById('predator-energy-min').value)
+        predatorEnergyMax = parseFloat(document.getElementById('predator-energy-max').value)
+        predatorSpeedMin = parseFloat(document.getElementById('predator-speed-min').value)
+        predatorSpeedMax = parseFloat(document.getElementById('predator-speed-max').value)
+        predatorAwarenessMin = parseFloat(document.getElementById('predator-awareness-min').value)
+        predatorAwarenessMax = parseFloat(document.getElementById('predator-awareness-max').value)
+        predatorGreedMin = parseFloat(document.getElementById('predator-greed-min').value)
+        predatorGreedMax = parseFloat(document.getElementById('predator-greed-max').value)
+        predatorLibidoMin = parseFloat(document.getElementById('predator-libido-min').value)
+        predatorLibidoMax = parseFloat(document.getElementById('predator-libido-max').value)
+        predatorGestation = parseInt(document.getElementById('predator-gestation-length').value)*1000
+        predatorLitterMin = parseInt(document.getElementById('predator-litter-min').value)
+        predatorLitterMax = parseInt(document.getElementById('predator-litter-max').value)
+        predatorInvestmentMin = parseFloat(document.getElementById('predator-investment-min').value)
+        predatorInvestmentMax = parseFloat(document.getElementById('predator-investment-max').value)
+
         running = true
         startup()
         window.requestAnimationFrame(main_loop);
@@ -42,7 +116,7 @@ class Grass {
         let grassImage = document.createElement('img')
         grassImage.src = "grass.png"
         this.img = grassImage
-        this.energy = 10
+        this.energy = grassEnergyMin + Math.random()*(grassEnergyMax-grassEnergyMin)
     }
 }
 
@@ -64,6 +138,7 @@ class Animal {
         this.x_move = Math.round(Math.random()*this.speed)
         this.y_move = Math.round(Math.random()*this.speed)
         this.gestation = 3000
+        this.minLitterSize = 1
         this.maxLitterSize = 3
         
         this.metabolism = this.speed/8 + this.awareness/80
@@ -182,20 +257,30 @@ class Prey extends Animal {
         let preyImage = document.createElement('img')
         preyImage.src = "rabbit.png"
         this.img = preyImage
+
+        this.energy = preyEnergyMin + Math.random()*(preyEnergyMax-preyEnergyMin)
+        this.speed = preySpeedMin + Math.random()*(preySpeedMax-preySpeedMin)
+        this.awareness = preyAwarenessMin + Math.random()*(preyAwarenessMax-preyAwarenessMin)
+        this.greed = preyGreedMin + Math.random()*(preyGreedMax-preyGreedMin)
+        this.libido = preyLibidoMin + Math.random()*(preyLibidoMax-preyLibidoMin)
+        this.gestation = preyGestation
+        this.minLitterSize = preyLitterMin
+        this.maxLitterSize = preyLitterMax
+        this.parentalInvestment = preyInvestmentMin + Math.random()*(preyInvestmentMax-preyInvestmentMin)
     }
     mate = (thisList) => {
         
         if (this.sex === 'female' && this.age >= 1 && this.pregnant === false && this.energy >= this.libido) {
             thisList.forEach((boy,i) => {
                 let mateable = this.checkProximity(boy)
-                if (mateable <= this.awareness && this.pregnant === false && boy.energy >= boy.libido) { 
+                if (mateable <= this.awareness && this.pregnant === false && boy.energy >= boy.libido && boy.age >= 1) { 
                     this.pregnant = true
                     boy.energy -= boy.energy * boy.parentalInvestment
                     //Causes the prey to give birth after 3 seconds
                     setTimeout(() => {
                         let childSupport = this.parentalInvestment * this.energy
                         this.energy -= childSupport
-                        let litterSize = Math.round(Math.random()*this.maxLitterSize)
+                        let litterSize = Math.round(this.minLitterSize + Math.random()*(this.maxLitterSize-this.minLitterSize))
                         for (let i=0;i<litterSize;i++) {
                             let child = new Prey()
                             child.energy = childSupport/litterSize
@@ -223,10 +308,16 @@ class Prey extends Animal {
 class Predator extends Animal {
     constructor(){
         super()
-        this.gestation = 6000
-        this.maxLitterSize = 2
-        this.maxAge = 50
-        this.speed = 4
+        this.energy = predatorEnergyMin + Math.random()*(predatorEnergyMax-predatorEnergyMin)
+        this.speed = predatorSpeedMin + Math.random()*(predatorSpeedMax-predatorSpeedMin)
+        this.awareness = predatorAwarenessMin + Math.random()*(predatorAwarenessMax-predatorAwarenessMin)
+        this.greed = predatorGreedMin + Math.random()*(predatorGreedMax-predatorGreedMin)
+        this.libido = predatorLibidoMin + Math.random()*(predatorLibidoMax-predatorLibidoMin)
+        this.gestation = predatorGestation
+        this.minLitterSize = predatorLitterMin
+        this.maxLitterSize = predatorLitterMax
+        this.parentalInvestment = predatorInvestmentMin + Math.random()*(predatorInvestmentMax-predatorInvestmentMin)
+        
         let predImage = document.createElement('img')
         predImage.src = "fox.png"
         this.img = predImage
@@ -236,14 +327,14 @@ class Predator extends Animal {
         if (this.sex === 'female' && this.age >= 1 && this.pregnant === false && this.energy >= this.libido) {
             thisList.forEach((boy,i) => {
                 let mateable = this.checkProximity(boy)
-                if (mateable <= this.awareness && this.pregnant === false && boy.energy >= boy.libido) { 
+                if (mateable <= this.awareness && this.pregnant === false && boy.energy >= boy.libido && boy.age >= 2) { 
                     this.pregnant = true
                     boy.energy -= boy.energy * boy.parentalInvestment
                     //Causes the prey to give birth after 3 seconds
                     setTimeout(() => {
                         let childSupport = this.parentalInvestment * this.energy
                         this.energy -= childSupport
-                        let litterSize = Math.round(Math.random()*this.maxLitterSize)
+                        let litterSize = Math.round(this.minLitterSize + Math.random()*(this.maxLitterSize-this.minLitterSize))
                         for (let i=0;i<litterSize;i++) {
                             let child = new Predator()
                             child.energy = childSupport/litterSize
@@ -282,6 +373,10 @@ function startup() {
     setInterval( function() {
         console.log(predList)
     },12000)
+    setInterval(function() {
+        let grass = new Grass()
+        grassList.push(grass)
+    },grassSpawnRate)
     
 }
 
@@ -290,8 +385,8 @@ function main_loop() {
         ctx.clearRect(0,0,width,height)
     
 
-        let grass = new Grass()
-        grassList.push(grass)
+        // let grass = new Grass()
+        // grassList.push(grass)
 
         grassList.forEach(function(grass){
             ctx.drawImage(grass.img,grass.x,grass.y)
