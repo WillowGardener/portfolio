@@ -6,12 +6,102 @@
 
 <body>
     <h1 id="title">LOOK AT EM GO</h1>
+    <main>
+      <canvas width="960" height="640" id = "layer1"></canvas>
+      <div id='interface'>
+        <div id = 'stat-input'>
+          <h3>Grass</h3>
+          <div class = 'data-row'>
+          <label for='grass-energy'>Nutrition: </label>
+          <input type='number' id='grass-energy' name='grass-energy'>
+          </div>
+          <div class = 'data-row'>
+          <label for='grass-spawn-rate'>Spawn Rate: </label>
+          <input type='number' id='grass-spawn-rate' name='grass-spawn-rate'>
+          </div>
 
-    <canvas width="960" height="640" id = "layer1"></canvas>
-    
-    
-    <button id="halt-simulation">HALT VARMINTING</button>
-    
+          <h3>Rabbits</h3>
+          <div class = 'data-row'>
+          <label for='prey-start-number'>Starting Population: </label>
+          <input type='number' id='prey-start-number' name='prey-start-number'>
+          </div>
+          <div class = 'data-row'>
+          <label for='prey-energy'>Starting Energy: </label>
+          <input type='number' id='prey-energy' name='prey-energy'>
+          </div>
+          <div class = 'data-row'>
+          <label for='prey-speed'>Speed: </label>
+          <input type='number' id='prey-speed' name='prey-speed'>
+          </div>
+          <div class = 'data-row'>
+          <label for='prey-awareness'>Awareness: </label>
+          <input type='number' id='prey-awareness' name='prey-awareness'>
+          </div>
+          <div class = 'data-row'>          
+          <label for='prey-greed'>Greed: </label>
+          <input type='number' id='prey-greed' name='prey-greed'>
+          </div>
+          <div class = 'data-row'>
+          <label for='prey-libido'>Libido: </label>
+          <input type='number' id='prey-libido' name='prey-libido'>
+          </div>
+          <div class = 'data-row'>
+          <label for='prey-gestation-length'>Gestation Duration: </label>
+          <input type='number' id='prey-gestation-length' name='prey-gestation-length'>
+          </div>
+          <div class = 'data-row'>
+          <label for='prey-litter'>Maximum Litter Size: </label>
+          <input type='number' id='prey-litter' name='prey-litter'>
+          </div>
+          <div class = 'data-row'>
+          <label for='prey-investment'>Parental Investment: </label>
+          <input type='number' id='prey-investment' name='prey-investment'>
+          </div>
+
+          <h3>Foxes</h3>
+          <div class = 'data-row'>
+          <label for='predator-start-number'>Starting Population: </label>
+          <input type='number' id='predator-start-number' name='predator-start-number'>
+          </div>
+          <div class = 'data-row'>
+          <label for='predator-energy'>Starting Energy: </label>
+          <input type='number' id='predator-energy' name='predator-energy'>
+          </div>
+          <div class = 'data-row'>
+          <label for='predator-speed'>Speed: </label>
+          <input type='number' id='predator-speed' name='predator-speed'>
+          </div>
+          <div class = 'data-row'>
+          <label for='predator-awareness'>Awareness: </label>
+          <input type='number' id='predator-awareness' name='predator-awareness'>
+          </div>
+          <div class = 'data-row'>          
+          <label for='predator-greed'>Greed: </label>
+          <input type='number' id='predator-greed' name='predator-greed'>
+          </div>
+          <div class = 'data-row'>
+          <label for='predator-libido'>Libido: </label>
+          <input type='number' id='predator-libido' name='predator-libido'>
+          </div>
+          <div class = 'data-row'>
+          <label for='predator-gestation-length'>Gestation Duration: </label>
+          <input type='number' id='predator-gestation-length' name='predator-gestation-length'>
+          </div>
+          <div class = 'data-row'>
+          <label for='predator-litter'>Maximum Litter Size: </label>
+          <input type='number' id='predator-litter' name='predator-litter'>
+          </div>
+          <div class = 'data-row'>
+          <label for='predator-investment'>Parental Investment: </label>
+          <input type='number' id='predator-investment' name='predator-investment'>
+          </div>
+        </div>
+        <div id='buttons'>
+          <button id="begin-simulation">BEGIN ECO-SIMULATION</button>
+          <button id="halt-simulation">HALT VARMINTING</button>
+        </div>
+      </div>
+    </main>
   
     <script src = varmints.js></script>
 </body>

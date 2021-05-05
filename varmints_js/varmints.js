@@ -4,8 +4,7 @@ const title = document.getElementById("title")
 const ctx = document.getElementById("layer1").getContext("2d");
 const cnv = document.getElementById("layer1");
 
-let halt = document.getElementById('halt-simulation')
-let running = true
+let running = false
 let predList = []
 let preyList = []
 let grassList = []
@@ -13,9 +12,28 @@ let grassList = []
 let preyStartNumber = 32
 let predatorStartNumber = 4
 
+let begin = document.getElementById('begin-simulation')
+let halt = document.getElementById('halt-simulation')
+
+begin.addEventListener("click", function() {
+    if (running === false) {
+        running = true
+        startup()
+        window.requestAnimationFrame(main_loop);
+    }
+})
+
 halt.addEventListener("click", function() {
     running = false
+    predList = []
+    preyList = []
+    grassList = []
+    
 })
+
+
+
+
 
 class Grass {
     constructor(){
@@ -280,15 +298,18 @@ function main_loop() {
         })
         
         preyList.forEach(function(prey){
+            
+            if (prey.energy < prey.greed) {
+                prey.eat(grassList)
+            }
+            
             predList.forEach((pred, i) => {
                 let danger = prey.checkProximity(pred)
                 if (danger < prey.awareness) {
                     prey.moveAway(pred)
                 }
             })
-            if (prey.energy < prey.greed) {
-                prey.eat(grassList)
-            }
+            
 
             prey.mate(preyList)
             
@@ -303,10 +324,13 @@ function main_loop() {
         })
 
         predList.forEach(function(pred,i) {
+
             if (pred.energy < pred.greed) {
                 pred.eat(preyList)
             }
+
             pred.mate(predList)
+
             pred.move()
 
             if (pred.energy <= 0) {
@@ -321,5 +345,4 @@ function main_loop() {
     }
 }
 
-startup()
-window.requestAnimationFrame(main_loop);
+

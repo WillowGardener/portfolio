@@ -8,3 +8,24 @@ h1 {
     
 }
 
+main {
+    display: flex;
+}
+
+
+
+#stat-input {
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    margin: 10px;
+}
+
+.data-row {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+#buttons {
+    margin: 10px;
+}
