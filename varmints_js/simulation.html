@@ -13,8 +13,8 @@
           <h3>Grass</h3>
           <div class = 'data-row'>
             <label for='grass-energy'>Nutrition: </label>
-            <input type='number' value='10' id='grass-energy-min' name='grass-energy-min'>
-            <input type='number' value='10' id='grass-energy-max' name='grass-energy-max'>
+            <input type='number' value='20' id='grass-energy-min' name='grass-energy-min'>
+            <input type='number' value='20' id='grass-energy-max' name='grass-energy-max'>
           </div>
           <div class = 'data-row'>
             <label for='grass-spawn-rate'>Spawn Rate: </label>
@@ -62,8 +62,16 @@
           </div>
           <div class = 'data-row'>
             <label for='prey-investment'>Parental Investment: </label>
-            <input type='number' value='.25' id='prey-investment-min' name='prey-investment-min'>
-            <input type='number' value='.5' id='prey-investment-max' name='prey-investment-max'>
+            <input type='number' max='1' step='.05' value='.25' id='prey-investment-min' name='prey-investment-min'>
+            <input type='number' max='1' step='.05' value='.5' id='prey-investment-max' name='prey-investment-max'>
+          </div>
+          <div class = 'data-row'>
+            <label for='prey-sense-efficiency'>Sense Efficiency: </label>
+            <input type='number' value='40' id='prey-sense-efficiency' name='prey-sense-efficiency'>
+          </div>
+          <div class = 'data-row'>
+            <label for='prey-speed-efficiency'>Speed Efficiency: </label>
+            <input type='number' value='4' id='prey-speed-efficiency' name='prey-speed-efficiency'>
           </div>
 
           <h3>Foxes</h3>
@@ -107,8 +115,16 @@
           </div>
           <div class = 'data-row'>
             <label for='predator-investment'>Parental Investment: </label>
-            <input type='number' value='.25' id='predator-investment-min' name='predator-investment-min'>
-            <input type='number' value='.5' id='predator-investment-max' name='predator-investment-max'>
+            <input type='number' max='1' step='.05' value='.25' id='predator-investment-min' name='predator-investment-min'>
+            <input type='number' max='1' step='.05' value='.5' id='predator-investment-max' name='predator-investment-max'>
+          </div>
+          <div class = 'data-row'>
+            <label for='predator-sense-efficiency'>Sense Efficiency: </label>
+            <input type='number' value='40' id='predator-sense-efficiency' name='predator-sense-efficiency'>
+          </div>
+          <div class = 'data-row'>
+            <label for='predator-speed-efficiencu'>Speed Efficiency: </label>
+            <input type='number' value='4' id='predator-speed-efficiency' name='predator-speed-efficiency'>
           </div>
         </div>
         <div id='buttons'>

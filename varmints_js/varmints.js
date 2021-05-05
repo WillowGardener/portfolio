@@ -8,6 +8,8 @@ let running = false
 let predList = []
 let preyList = []
 let grassList = []
+let yearCount = 0
+let maintenance = null
 
 let grassSpawnRate = 20
 let grassEnergyMin = 20
@@ -29,6 +31,8 @@ let preyLitterMin = 1
 let preyLitterMax = 3
 let preyInvestmentMin = .25
 let preyInvestmentMax = .5
+let preySenseEfficiency = 30
+let preySpeedEfficiency = 3
 
 let predatorStartNumber = 6
 let predatorEnergyMin = 40
@@ -46,6 +50,8 @@ let predatorLitterMin = 1
 let predatorLitterMax = 3
 let predatorInvestmentMin = .25
 let predatorInvestmentMax = .5
+let predatorSenseEfficiency = 30
+let predatorSpeedEfficiency = 3
 
 let begin = document.getElementById('begin-simulation')
 let halt = document.getElementById('halt-simulation')
@@ -73,6 +79,8 @@ begin.addEventListener("click", function() {
         preyLitterMax = parseInt(document.getElementById('prey-litter-max').value)
         preyInvestmentMin = parseFloat(document.getElementById('prey-investment-min').value)
         preyInvestmentMax = parseFloat(document.getElementById('prey-investment-max').value)
+        preySpeedEfficiency = parseFloat(document.getElementById('prey-speed-efficiency').value)
+        preySenseEfficiency = parseFloat(document.getElementById('prey-sense-efficiency').value)
 
         predatorStartNumber = parseInt(document.getElementById('predator-start-number').value)
         predatorEnergyMin = parseFloat(document.getElementById('predator-energy-min').value)
@@ -90,6 +98,8 @@ begin.addEventListener("click", function() {
         predatorLitterMax = parseInt(document.getElementById('predator-litter-max').value)
         predatorInvestmentMin = parseFloat(document.getElementById('predator-investment-min').value)
         predatorInvestmentMax = parseFloat(document.getElementById('predator-investment-max').value)
+        predatorSpeedEfficiency = parseFloat(document.getElementById('predator-speed-efficiency').value)
+        predatorSenseEfficiency = parseFloat(document.getElementById('predator-sense-efficiency').value)
 
         running = true
         startup()
@@ -102,6 +112,7 @@ halt.addEventListener("click", function() {
     predList = []
     preyList = []
     grassList = []
+    clearInterval(maintenance)
     
 })
 
@@ -135,8 +146,8 @@ class Animal {
         this.awareness = 30
         this.speed = 3
         this.size = 16
-        this.x_move = Math.round(Math.random()*this.speed)
-        this.y_move = Math.round(Math.random()*this.speed)
+        this.x_move = this.speed
+        this.y_move = this.speed
         this.gestation = 3000
         this.minLitterSize = 1
         this.maxLitterSize = 3
@@ -152,7 +163,9 @@ class Animal {
     getOlder() {setInterval(()=>{
         this.age+=1
         if (this.age >= this.maxAge) {
-            this.speed = 0
+            // this.speed = 0
+            this.x_move = 0
+            this.y_move = 0
             this.awareness = 0
             this.metabolism = 0
             this.sex = "corpse"
@@ -182,17 +195,18 @@ class Animal {
     eat(target_array){
         
         target_array.forEach((target,i) => {
-            
-            let proximity = this.checkProximity(target)
-            let edible = this.checkAdjacent(target)
-            if (edible === true) {
-                this.energy += target.energy
-                
-                target_array.splice(i,1)
-                
-            }
-            else if (proximity <= this.awareness) {
-                this.moveToward(target)
+            if (this.sex != 'corpse') {
+                let proximity = this.checkProximity(target)
+                let edible = this.checkAdjacent(target)
+                if (edible === true) {
+                    this.energy += target.energy
+                    target.energy = 0
+                    target_array.splice(i,1)
+                    
+                }
+                else if (proximity <= this.awareness) {
+                    this.moveToward(target)
+                }
             }
         })
     }
@@ -264,6 +278,7 @@ class Prey extends Animal {
         this.greed = preyGreedMin + Math.random()*(preyGreedMax-preyGreedMin)
         this.libido = preyLibidoMin + Math.random()*(preyLibidoMax-preyLibidoMin)
         this.gestation = preyGestation
+        this.metabolism = this.speed/preySpeedEfficiency + this.awareness/preySenseEfficiency
         this.minLitterSize = preyLitterMin
         this.maxLitterSize = preyLitterMax
         this.parentalInvestment = preyInvestmentMin + Math.random()*(preyInvestmentMax-preyInvestmentMin)
@@ -277,7 +292,7 @@ class Prey extends Animal {
                     this.pregnant = true
                     boy.energy -= boy.energy * boy.parentalInvestment
                     //Causes the prey to give birth after 3 seconds
-                    setTimeout(() => {
+                    this.pregnancy = setTimeout(() => {
                         let childSupport = this.parentalInvestment * this.energy
                         this.energy -= childSupport
                         let litterSize = Math.round(this.minLitterSize + Math.random()*(this.maxLitterSize-this.minLitterSize))
@@ -292,13 +307,14 @@ class Prey extends Animal {
                             child.greed = (Math.random()/2+.75) * this.greed
                             child.libido = (Math.random()/2+.75) * this.libido
                             child.parentalInvestment = (Math.random()/2+.75) * this.parentalInvestment
-
+                            if (child.parentalInvestment > 1) {child.parentalInvestment = 1}
+                            
                             thisList.push(child)
                             
                         }
                         this.pregnant = false
                         
-                    },3000)
+                    },this.gestation)
                 }
             })
         }
@@ -317,7 +333,7 @@ class Predator extends Animal {
         this.minLitterSize = predatorLitterMin
         this.maxLitterSize = predatorLitterMax
         this.parentalInvestment = predatorInvestmentMin + Math.random()*(predatorInvestmentMax-predatorInvestmentMin)
-        
+        this.metabolism = this.speed/predatorSpeedEfficiency + this.awareness/predatorSenseEfficiency
         let predImage = document.createElement('img')
         predImage.src = "fox.png"
         this.img = predImage
@@ -331,7 +347,7 @@ class Predator extends Animal {
                     this.pregnant = true
                     boy.energy -= boy.energy * boy.parentalInvestment
                     //Causes the prey to give birth after 3 seconds
-                    setTimeout(() => {
+                    this.pregnancy = setTimeout(() => {
                         let childSupport = this.parentalInvestment * this.energy
                         this.energy -= childSupport
                         let litterSize = Math.round(this.minLitterSize + Math.random()*(this.maxLitterSize-this.minLitterSize))
@@ -346,6 +362,7 @@ class Predator extends Animal {
                             child.greed = (Math.random()/2+.75) * this.greed
                             child.libido = (Math.random()/2+.75) * this.libido
                             child.parentalInvestment = (Math.random()/2+.75) * this.parentalInvestment
+                            if (child.parentalInvestment > 1) {child.parentalInvestment = 1}
 
                             thisList.push(child)
                             
@@ -370,8 +387,10 @@ function startup() {
         predList.push(pred)
     }
     //Maintenance function to check data yearly
-    setInterval( function() {
+    maintenance = setInterval( function() {
+        console.log(preyList)
         console.log(predList)
+        yearCount += 1
     },12000)
     setInterval(function() {
         let grass = new Grass()
@@ -383,10 +402,6 @@ function startup() {
 function main_loop() {
     if (running === true) {
         ctx.clearRect(0,0,width,height)
-    
-
-        // let grass = new Grass()
-        // grassList.push(grass)
 
         grassList.forEach(function(grass){
             ctx.drawImage(grass.img,grass.x,grass.y)
@@ -412,6 +427,9 @@ function main_loop() {
 
             //Kills prey who have no energy--they starve
             if (prey.energy <= 0) {
+                if (prey.pregnant === true) {
+                    clearTimeout(this.pregnancy)
+                }
                 preyList.splice(i,1)
             }
             
@@ -429,12 +447,17 @@ function main_loop() {
             pred.move()
 
             if (pred.energy <= 0) {
+                if (pred.pregnant === true) {
+                    clearTimeout(this.pregnancy)
+                }
                 predList.splice(i,1)
             }
             ctx.drawImage(pred.img,pred.x,pred.y)
         })
 
-           
+        if (preyList === [] && predList === []){
+            alert(`uh oh... all the varmints are dead. On the upside, your ecosystem lasted ${yearCount} years before total ecological collapse!`)
+        }   
 
         window.requestAnimationFrame(main_loop)
     }
