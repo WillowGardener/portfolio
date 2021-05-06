@@ -5,6 +5,7 @@ const ctx = document.getElementById("layer1").getContext("2d");
 const cnv = document.getElementById("layer1");
 
 let running = false
+let resultsRead = false
 let predList = []
 let preyList = []
 let grassList = []
@@ -112,6 +113,7 @@ halt.addEventListener("click", function() {
     predList = []
     preyList = []
     grassList = []
+    ctx.clearRect(0,0,width,height)
     clearInterval(maintenance)
     
 })
@@ -131,7 +133,7 @@ class Grass {
     }
 }
 
-const testGrass = new Grass()
+
 
 class Animal {
     constructor(){
@@ -167,7 +169,7 @@ class Animal {
             this.x_move = 0
             this.y_move = 0
             this.awareness = 0
-            this.metabolism = 0
+            
             this.sex = "corpse"
         }
         
@@ -275,6 +277,7 @@ class Prey extends Animal {
         this.energy = preyEnergyMin + Math.random()*(preyEnergyMax-preyEnergyMin)
         this.speed = preySpeedMin + Math.random()*(preySpeedMax-preySpeedMin)
         this.awareness = preyAwarenessMin + Math.random()*(preyAwarenessMax-preyAwarenessMin)
+        
         this.greed = preyGreedMin + Math.random()*(preyGreedMax-preyGreedMin)
         this.libido = preyLibidoMin + Math.random()*(preyLibidoMax-preyLibidoMin)
         this.gestation = preyGestation
@@ -288,7 +291,7 @@ class Prey extends Animal {
         if (this.sex === 'female' && this.age >= 1 && this.pregnant === false && this.energy >= this.libido) {
             thisList.forEach((boy,i) => {
                 let mateable = this.checkProximity(boy)
-                if (mateable <= this.awareness && this.pregnant === false && boy.energy >= boy.libido && boy.age >= 1) { 
+                if (mateable <= this.awareness && this.pregnant === false && boy.energy >= boy.libido && boy.sex === 'male' && boy.age >= 1) { 
                     this.pregnant = true
                     boy.energy -= boy.energy * boy.parentalInvestment
                     //Causes the prey to give birth after 3 seconds
@@ -377,6 +380,10 @@ class Predator extends Animal {
 }
 
 function startup() {
+    grassSpawnRate = 1000/parseInt(document.getElementById('grass-spawn-rate').value)
+    resultsRead = false
+    yearCount = 0
+    grassList = []
     for (i=0; i<preyStartNumber; i++) {
         let prey = new Prey()
         
@@ -386,12 +393,15 @@ function startup() {
         let pred = new Predator()
         predList.push(pred)
     }
+    console.log(grassList)
+    console.log(grassSpawnRate)
     //Maintenance function to check data yearly
     maintenance = setInterval( function() {
-        console.log(preyList)
-        console.log(predList)
+        // console.log(preyList)
+        // console.log(predList)
         yearCount += 1
     },12000)
+    
     setInterval(function() {
         let grass = new Grass()
         grassList.push(grass)
@@ -455,8 +465,10 @@ function main_loop() {
             ctx.drawImage(pred.img,pred.x,pred.y)
         })
 
-        if (preyList === [] && predList === []){
+        if (preyList.length == 0 && predList.length == 0 && resultsRead === false) {
             alert(`uh oh... all the varmints are dead. On the upside, your ecosystem lasted ${yearCount} years before total ecological collapse!`)
+            resultsRead = true
+            running = false
         }   
 
         window.requestAnimationFrame(main_loop)
