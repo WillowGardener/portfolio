@@ -1,30 +1,70 @@
-
+body {
+    background-color: #BDBEBF;
+    width: 100%;
+    margin: 0px;
+}
 
 #layer1 {
-    border: 1px solid black;
+    
     background-image: url('grass background.png');
+    
+    width: 60vw;
+    height: 100vh;
+    /* border-radius: 10px; */
     
 }
 
 main {
     display: flex;
+    
+    
+    
 }
 
-
+#interface {
+    margin: 10px;
+    /* height: 90vh; */
+    
+    color: #161408
+    
+}
 
 #stat-input {
     display: flex;
     flex-direction: column;
     align-items: space-between;
-    margin: 10px;
+    padding: 5px;
+    
 }
+
 h3 {
     margin: 5px
 }
 
+#question {
+    max-height: 20px
+}
+
 .data-row {
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: 30% 30% 30% 10%;
+    margin: 3px;
+}
+
+#grass-data {
+    /* background-color: #4A8C08 */
+}
+
+#rabbit-data {
+    /* background-color: #161408 */
+}
+
+#fox-data {
+    /* background-color: #BF5D24; */
+}
+
+#question {
+    margin-left: 5px;
 }
 
 #buttons {

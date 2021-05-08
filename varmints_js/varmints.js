@@ -17,6 +17,7 @@ let grassEnergyMin = 20
 let grassEnergyMax = 30
 
 let preyStartNumber = 32
+let preyMaxAge = 8
 let preyEnergyMin = 30
 let preyEnergyMax = 30
 let preySpeedMin = 3
@@ -36,6 +37,7 @@ let preySenseEfficiency = 30
 let preySpeedEfficiency = 3
 
 let predatorStartNumber = 6
+let predatorMaxAge = 12
 let predatorEnergyMin = 40
 let predatorEnergyMax = 40
 let predatorSpeedMin = 4
@@ -65,6 +67,7 @@ begin.addEventListener("click", function() {
         grassSpawnRate = 1000/parseInt(document.getElementById('grass-spawn-rate').value)
         
         preyStartNumber = parseInt(document.getElementById('prey-start-number').value)
+        preyMaxAge = parseInt(document.getElementById('prey-max-age').value)
         preyEnergyMin = parseFloat(document.getElementById('prey-energy-min').value)
         preyEnergyMax = parseFloat(document.getElementById('prey-energy-max').value)
         preySpeedMin = parseFloat(document.getElementById('prey-speed-min').value)
@@ -84,6 +87,7 @@ begin.addEventListener("click", function() {
         preySenseEfficiency = parseFloat(document.getElementById('prey-sense-efficiency').value)
 
         predatorStartNumber = parseInt(document.getElementById('predator-start-number').value)
+        predatorMaxAge = parseInt(document.getElementById('predator-max-age').value)
         predatorEnergyMin = parseFloat(document.getElementById('predator-energy-min').value)
         predatorEnergyMax = parseFloat(document.getElementById('predator-energy-max').value)
         predatorSpeedMin = parseFloat(document.getElementById('predator-speed-min').value)
@@ -101,6 +105,7 @@ begin.addEventListener("click", function() {
         predatorInvestmentMax = parseFloat(document.getElementById('predator-investment-max').value)
         predatorSpeedEfficiency = parseFloat(document.getElementById('predator-speed-efficiency').value)
         predatorSenseEfficiency = parseFloat(document.getElementById('predator-sense-efficiency').value)
+        
 
         running = true
         startup()
@@ -164,14 +169,15 @@ class Animal {
     }
     getOlder() {setInterval(()=>{
         this.age+=1
-        if (this.age >= this.maxAge) {
-            // this.speed = 0
-            this.x_move = 0
-            this.y_move = 0
-            this.awareness = 0
+        // if (this.age >= this.maxAge) {
+        //     // this.speed = 0
+        //     this.x_move = 0
+        //     this.y_move = 0
+        //     this.awareness = 0
+        //     this.energy = 0
             
-            this.sex = "corpse"
-        }
+        //     this.sex = "corpse"
+        // }
         
     },12000)
     }
@@ -277,7 +283,7 @@ class Prey extends Animal {
         this.energy = preyEnergyMin + Math.random()*(preyEnergyMax-preyEnergyMin)
         this.speed = preySpeedMin + Math.random()*(preySpeedMax-preySpeedMin)
         this.awareness = preyAwarenessMin + Math.random()*(preyAwarenessMax-preyAwarenessMin)
-        
+        this.maxAge = preyMaxAge
         this.greed = preyGreedMin + Math.random()*(preyGreedMax-preyGreedMin)
         this.libido = preyLibidoMin + Math.random()*(preyLibidoMax-preyLibidoMin)
         this.gestation = preyGestation
@@ -328,6 +334,7 @@ class Predator extends Animal {
     constructor(){
         super()
         this.energy = predatorEnergyMin + Math.random()*(predatorEnergyMax-predatorEnergyMin)
+        this.maxAge = predatorMaxAge
         this.speed = predatorSpeedMin + Math.random()*(predatorSpeedMax-predatorSpeedMin)
         this.awareness = predatorAwarenessMin + Math.random()*(predatorAwarenessMax-predatorAwarenessMin)
         this.greed = predatorGreedMin + Math.random()*(predatorGreedMax-predatorGreedMin)
@@ -380,7 +387,49 @@ class Predator extends Animal {
 }
 
 function startup() {
+    grassEnergyMin = parseFloat(document.getElementById("grass-energy-min").value)
+    grassEnergyMax = parseFloat(document.getElementById("grass-energy-max").value)
     grassSpawnRate = 1000/parseInt(document.getElementById('grass-spawn-rate').value)
+    
+    preyStartNumber = parseInt(document.getElementById('prey-start-number').value)
+    preyMaxAge = parseInt(document.getElementById('prey-max-age').value)
+    preyEnergyMin = parseFloat(document.getElementById('prey-energy-min').value)
+    preyEnergyMax = parseFloat(document.getElementById('prey-energy-max').value)
+    preySpeedMin = parseFloat(document.getElementById('prey-speed-min').value)
+    preySpeedMax = parseFloat(document.getElementById('prey-speed-max').value)
+    preyAwarenessMin = parseFloat(document.getElementById('prey-awareness-min').value)
+    preyAwarenessMax = parseFloat(document.getElementById('prey-awareness-max').value)
+    preyGreedMin = parseFloat(document.getElementById('prey-greed-min').value)
+    preyGreedMax = parseFloat(document.getElementById('prey-greed-max').value)
+    preyLibidoMin = parseFloat(document.getElementById('prey-libido-min').value)
+    preyLibidoMax = parseFloat(document.getElementById('prey-libido-max').value)
+    preyGestation = parseInt(document.getElementById('prey-gestation-length').value)*1000
+    preyLitterMin = parseInt(document.getElementById('prey-litter-min').value)
+    preyLitterMax = parseInt(document.getElementById('prey-litter-max').value)
+    preyInvestmentMin = parseFloat(document.getElementById('prey-investment-min').value)
+    preyInvestmentMax = parseFloat(document.getElementById('prey-investment-max').value)
+    preySpeedEfficiency = parseFloat(document.getElementById('prey-speed-efficiency').value)
+    preySenseEfficiency = parseFloat(document.getElementById('prey-sense-efficiency').value)
+
+    predatorStartNumber = parseInt(document.getElementById('predator-start-number').value)
+    predatorMaxAge = parseInt(document.getElementById('predator-max-age').value)
+    predatorEnergyMin = parseFloat(document.getElementById('predator-energy-min').value)
+    predatorEnergyMax = parseFloat(document.getElementById('predator-energy-max').value)
+    predatorSpeedMin = parseFloat(document.getElementById('predator-speed-min').value)
+    predatorSpeedMax = parseFloat(document.getElementById('predator-speed-max').value)
+    predatorAwarenessMin = parseFloat(document.getElementById('predator-awareness-min').value)
+    predatorAwarenessMax = parseFloat(document.getElementById('predator-awareness-max').value)
+    predatorGreedMin = parseFloat(document.getElementById('predator-greed-min').value)
+    predatorGreedMax = parseFloat(document.getElementById('predator-greed-max').value)
+    predatorLibidoMin = parseFloat(document.getElementById('predator-libido-min').value)
+    predatorLibidoMax = parseFloat(document.getElementById('predator-libido-max').value)
+    predatorGestation = parseInt(document.getElementById('predator-gestation-length').value)*1000
+    predatorLitterMin = parseInt(document.getElementById('predator-litter-min').value)
+    predatorLitterMax = parseInt(document.getElementById('predator-litter-max').value)
+    predatorInvestmentMin = parseFloat(document.getElementById('predator-investment-min').value)
+    predatorInvestmentMax = parseFloat(document.getElementById('predator-investment-max').value)
+    predatorSpeedEfficiency = parseFloat(document.getElementById('predator-speed-efficiency').value)
+    predatorSenseEfficiency = parseFloat(document.getElementById('predator-sense-efficiency').value)
     resultsRead = false
     yearCount = 0
     grassList = []
@@ -393,12 +442,11 @@ function startup() {
         let pred = new Predator()
         predList.push(pred)
     }
-    console.log(grassList)
-    console.log(grassSpawnRate)
+    
     //Maintenance function to check data yearly
     maintenance = setInterval( function() {
-        // console.log(preyList)
-        // console.log(predList)
+        console.log(preyList)
+        console.log(predList)
         yearCount += 1
     },12000)
     
@@ -466,6 +514,7 @@ function main_loop() {
         })
 
         if (preyList.length == 0 && predList.length == 0 && resultsRead === false) {
+            ctx.clearRect(0,0,width,height)
             alert(`uh oh... all the varmints are dead. On the upside, your ecosystem lasted ${yearCount} years before total ecological collapse!`)
             resultsRead = true
             running = false
