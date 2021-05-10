@@ -7,24 +7,19 @@ body {
 #layer1 {
     
     background-image: url('grass background.png');
-    
-    width: 60vw;
     height: 100vh;
-    /* border-radius: 10px; */
+    /* visibility: hidden; */
+    
     
 }
 
 main {
-    display: flex;
-    
-    
+    display: flex;  
     
 }
 
 #interface {
     margin: 10px;
-    /* height: 90vh; */
-    
     color: #161408
     
 }
@@ -41,8 +36,37 @@ h3 {
     margin: 5px
 }
 
-#question {
-    max-height: 20px
+.question {
+    max-height: 20px;
+    margin-left: 5px;
+    cursor:pointer;
+}
+
+.answer {
+    visibility: hidden;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    margin: 5px;
+    
+}
+
+.show {
+    visibility: visible;
+    
+    
+}
+
+.close {
+    cursor: pointer;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    
 }
 
 .data-row {
@@ -51,22 +75,21 @@ h3 {
     margin: 3px;
 }
 
-#grass-data {
-    /* background-color: #4A8C08 */
-}
-
-#rabbit-data {
-    /* background-color: #161408 */
-}
-
-#fox-data {
-    /* background-color: #BF5D24; */
-}
-
-#question {
-    margin-left: 5px;
-}
-
 #buttons {
+    margin: 10px;
+}
+
+button {
+    border-radius: 5px;
+    border: 2px solid rgb(114, 114, 114);
+    cursor:pointer;
+
+}
+
+p {
+    margin: 10px;
+}
+
+footer {
     margin: 10px;
 }

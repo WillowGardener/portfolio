@@ -59,6 +59,188 @@ let predatorSpeedEfficiency = 3
 let begin = document.getElementById('begin-simulation')
 let halt = document.getElementById('halt-simulation')
 
+let grassEnergyQuestion = document.getElementById('grass-energy-question')
+grassEnergyQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('grass-energy-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let grassSpawnRateQuestion = document.getElementById('grass-spawn-rate-question')
+grassSpawnRateQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('grass-spawn-rate-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let preyStartNumberQuestion = document.getElementById('prey-start-number-question')
+preyStartNumberQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('prey-start-number-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let preyMaxAgeQuestion = document.getElementById('prey-max-age-question')
+preyMaxAgeQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('prey-max-age-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let preyEnergyQuestion = document.getElementById('prey-energy-question')
+preyEnergyQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('prey-energy-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let preySpeedQuestion = document.getElementById('prey-speed-question')
+preySpeedQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('prey-speed-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let preyAwarenessQuestion = document.getElementById('prey-awareness-question')
+preyAwarenessQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('prey-awareness-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let preyGreedQuestion = document.getElementById('prey-greed-question')
+preyGreedQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('prey-greed-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let preyLibidoQuestion = document.getElementById('prey-libido-question')
+preyLibidoQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('prey-libido-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let preyGestationLengthQuestion = document.getElementById('prey-gestation-length-question')
+preyGestationLengthQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('prey-gestation-length-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let preyLitterQuestion = document.getElementById('prey-litter-question')
+preyLitterQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('prey-litter-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let preyInvestmentQuestion = document.getElementById('prey-investment-question')
+preyInvestmentQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('prey-investment-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let preySenseEfficiencyQuestion = document.getElementById('prey-sense-efficiency-question')
+preySenseEfficiencyQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('prey-sense-efficiency-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let preySpeedEfficiencyQuestion = document.getElementById('prey-speed-efficiency-question')
+preySpeedEfficiencyQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('prey-speed-efficiency-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let predatorStartNumberQuestion = document.getElementById('predator-start-number-question')
+predatorStartNumberQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('predator-start-number-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let predatorMaxAgeQuestion = document.getElementById('predator-max-age-question')
+predatorMaxAgeQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('predator-max-age-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let predatorEnergyQuestion = document.getElementById('predator-energy-question')
+predatorEnergyQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('predator-energy-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let predatorSpeedQuestion = document.getElementById('predator-speed-question')
+predatorSpeedQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('predator-speed-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let predatorAwarenessQuestion = document.getElementById('predator-awareness-question')
+predatorAwarenessQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('predator-awareness-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let predatorGreedQuestion = document.getElementById('predator-greed-question')
+predatorGreedQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('predator-greed-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let predatorLibidoQuestion = document.getElementById('predator-libido-question')
+predatorLibidoQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('predator-libido-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let predatorGestationLengthQuestion = document.getElementById('predator-gestation-length-question')
+predatorGestationLengthQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('predator-gestation-length-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let predatorLitterQuestion = document.getElementById('predator-litter-question')
+predatorLitterQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('predator-litter-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let predatorInvestmentQuestion = document.getElementById('predator-investment-question')
+predatorInvestmentQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('predator-investment-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let predatorSenseEfficiencyQuestion = document.getElementById('predator-sense-efficiency-question')
+predatorSenseEfficiencyQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('predator-sense-efficiency-answer')
+    answer.classList.toggle('show')
+    
+})
+
+let predatorSpeedEfficiencyQuestion = document.getElementById('predator-speed-efficiency-question')
+predatorSpeedEfficiencyQuestion.addEventListener('click', function(){
+    let answer = document.getElementById('predator-speed-efficiency-answer')
+    answer.classList.toggle('show')
+    
+})
+
 begin.addEventListener("click", function() {
     if (running === false) {
 
@@ -169,15 +351,15 @@ class Animal {
     }
     getOlder() {setInterval(()=>{
         this.age+=1
-        // if (this.age >= this.maxAge) {
-        //     // this.speed = 0
-        //     this.x_move = 0
-        //     this.y_move = 0
-        //     this.awareness = 0
-        //     this.energy = 0
+        if (this.age >= this.maxAge) {
+            // this.speed = 0
+            this.x_move = 0
+            this.y_move = 0
+            this.awareness = 0
+            this.energy = 0
             
-        //     this.sex = "corpse"
-        // }
+            this.sex = "corpse"
+        }
         
     },12000)
     }
