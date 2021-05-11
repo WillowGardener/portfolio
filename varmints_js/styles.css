@@ -1,9 +1,25 @@
+
+
 body {
     background-color: rgb(2,3,15);
+    font-family: 'Lato', sans-serif;
+
     font-family: 'Roboto', sans-serif;
     font-size: 92%;
     width: 100%;    
     margin: 0px;
+}
+
+#game-description {
+    position: absolute;
+    border-radius: 4px;
+    background-color: rgba(2, 3, 15, 0.808);
+    color: rgba(126, 178, 116);
+    max-width: 40%;
+    padding:0.35em 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #layer1 {
@@ -17,13 +33,20 @@ body {
 
 main {
     display: flex;  
-    
+    height: 100vh;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #interface {
     margin: 10px;
     color: rgb(126, 178, 116);
-    
+    max-height: 100%;
 }
 
 #stat-input {
@@ -38,12 +61,29 @@ h3 {
     margin: 5px
 }
 
+input {
+    color: rgb(126, 178, 116);
+    background-color: rgb(2,3,15);
+    transition: all .5s;
+    border: 2px solid rgba(126, 178, 116, 0.678);
+    border-radius: 2px;
+    margin-left: 3px;
+    
+}
+
+input:hover{
+    color: rgb(2,3,15);
+    background-color: rgb(126, 178, 116);
+}
+
 .question {
-    max-height: 20px;
+    height: 20px;
+    width: 20px;
     margin-left: 10px;
     cursor:pointer;
     border-radius: 50%;
     transition: all .5s;
+    
     
 }
 
@@ -107,9 +147,6 @@ button:hover{
     background-color: rgb(126, 178, 116);
 }
 
-p {
-    margin: 10px;
-}
 
 footer {
     margin: 10px;

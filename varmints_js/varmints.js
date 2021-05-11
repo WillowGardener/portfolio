@@ -412,6 +412,8 @@ for (closeX of closeList) {
 begin.addEventListener("click", function() {
     if (running === false) {
 
+        gameDescription= document.getElementById('game-description')
+        gameDescription.style.visibility = 'hidden'
         grassEnergyMin = parseFloat(document.getElementById("grass-energy-min").value)
         grassEnergyMax = parseFloat(document.getElementById("grass-energy-max").value)
         grassSpawnRate = 1000/parseInt(document.getElementById('grass-spawn-rate').value)
@@ -470,6 +472,8 @@ halt.addEventListener("click", function() {
     grassList = []
     ctx.clearRect(0,0,width,height)
     clearInterval(maintenance)
+    gameDescription= document.getElementById('game-description')
+    gameDescription.style.visibility = 'visible'
     
 })
 
