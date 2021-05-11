@@ -1,6 +1,8 @@
 body {
-    background-color: #BDBEBF;
-    width: 100%;
+    background-color: rgb(2,3,15);
+    font-family: 'Roboto', sans-serif;
+    font-size: 92%;
+    width: 100%;    
     margin: 0px;
 }
 
@@ -20,7 +22,7 @@ main {
 
 #interface {
     margin: 10px;
-    color: #161408
+    color: rgb(126, 178, 116);
     
 }
 
@@ -38,20 +40,30 @@ h3 {
 
 .question {
     max-height: 20px;
-    margin-left: 5px;
+    margin-left: 10px;
     cursor:pointer;
+    border-radius: 50%;
+    transition: all .5s;
+    
+}
+
+.question:hover{
+    
+    background-color: rgb(109, 87, 206);
 }
 
 .answer {
     visibility: hidden;
-    background-color: #555;
-    color: #fff;
+    background-color: rgba(126, 178, 116, 0.616);
+    color: rgb(2,3,15);
     text-align: center;
     border-radius: 6px;
     padding: 5px;
     position: absolute;
     z-index: 1;
     margin: 5px;
+    
+    
     
 }
 
@@ -80,10 +92,19 @@ h3 {
 }
 
 button {
-    border-radius: 5px;
-    border: 2px solid rgb(114, 114, 114);
+    padding:0.35em 1.2em;
+    border: 2px solid rgb(126, 178, 116);
+    border-radius: 2px;
     cursor:pointer;
+    background-color: rgb(2,3,15);
+    color:rgb(126, 178, 116);
+    font-family: 'Roboto', sans-serif;
+    transition: all .5s;
+}
 
+button:hover{
+    color: rgb(2,3,15);
+    background-color: rgb(126, 178, 116);
 }
 
 p {
