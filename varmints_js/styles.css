@@ -1,7 +1,7 @@
 
 
 body {
-    background-color: rgb(2,3,15);
+    background-color: rgb(5,3,15);
     font-family: 'Lato', sans-serif;
 
     font-family: 'Roboto', sans-serif;
@@ -13,7 +13,7 @@ body {
 #game-description {
     position: absolute;
     border-radius: 4px;
-    background-color: rgba(2, 3, 15, 0.808);
+    background-color: rgba(5, 3, 15, 0.808);
     color: rgba(126, 178, 116);
     max-width: 40%;
     padding:0.35em 1.2em;
@@ -46,7 +46,7 @@ main {
 #interface {
     margin: 10px;
     color: rgb(126, 178, 116);
-    max-height: 100%;
+    max-height: 100vh;
 }
 
 #stat-input {
@@ -58,12 +58,14 @@ main {
 }
 
 h3 {
-    margin: 5px
+    margin: 3px;
+    margin-bottom: 5px;
+    
 }
 
 input {
     color: rgb(126, 178, 116);
-    background-color: rgb(2,3,15);
+    background-color: rgb(5,3,15);
     transition: all .5s;
     border: 2px solid rgba(126, 178, 116, 0.678);
     border-radius: 2px;
@@ -72,7 +74,7 @@ input {
 }
 
 input:hover{
-    color: rgb(2,3,15);
+    color: rgb(5,3,15);
     background-color: rgb(126, 178, 116);
 }
 
@@ -95,7 +97,7 @@ input:hover{
 .answer {
     visibility: hidden;
     background-color: rgba(126, 178, 116, 0.616);
-    color: rgb(2,3,15);
+    color: rgb(5,3,15);
     text-align: center;
     border-radius: 6px;
     padding: 5px;
@@ -143,7 +145,7 @@ button {
 }
 
 button:hover{
-    color: rgb(2,3,15);
+    color: rgb(5,3,15);
     background-color: rgb(126, 178, 116);
 }
 

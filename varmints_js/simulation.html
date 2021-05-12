@@ -2,6 +2,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Lato&family=Roboto&display=swap" rel="stylesheet"> 
+  
   <link rel="stylesheet" href="styles.css">
   <title>Varmints... Online!</title>
 </head>
@@ -12,8 +13,9 @@
       <div class='container'>
         <p id='game-description'>
         Varmints is a tiny ecosystem simulator. The rabbits eat the grass, the foxes eat the rabbits. Adjust the attributes of the grass, rabbits,
-        and foxes to see how it affects the development of your ecosystem. Try to keep it in balance as long as possible! To see what each attribute
-        does, just click on the question mark next to it. When the variables are decided to your liking, click the 'Begin Eco-simulation' button
+        and foxes to see how it affects the development of your ecosystem. But with each generation, the animals mutate, and through survival
+        of the fittest, the species evolves. Try to keep it in balance as long as possible! To see what each attribute
+        does, just click on the question mark next to it. When you're satisfied with the ecosystem's statistics, click the 'Begin Eco-simulation' button
         and LOOK AT EM GO! <br>
         &copy; Griffin Wimminger 2021
         </p>
@@ -30,7 +32,6 @@
               <input type='number' value='20' id='grass-energy-max' name='grass-energy-max'>
               <div>
                 <img src='help.png' class='question' id='grass-energy-question'>
-                
                 <span class='answer' id='grass-energy-answer'>
                   <p>Nutrition is the amount of energy a rabbit gains when eating a single unit of grass<p>
                   <div class='close' id='grass-energy-close'>&times</div>
@@ -39,7 +40,7 @@
             </div>
             <div class = 'data-row'>
               <label for='grass-spawn-rate'>Spawn Rate: </label>
-              <input type='number' value='50' max='1000' id='grass-spawn-rate' name='grass-spawn-rate'>
+              <input type='number' value='5' max='1000' id='grass-spawn-rate' name='grass-spawn-rate'>
               <div></div>
               <div>           
                 <img src='help.png' id='grass-spawn-rate-question' class='question'>
