@@ -12,11 +12,11 @@ body {
 
 #game-description {
     position: absolute;
-    border-radius: 4px;
+    border-radius: 6px;
     background-color: rgba(5, 3, 15, 0.808);
     color: rgba(126, 178, 116);
     max-width: 40%;
-    padding:0.35em 1.2em;
+    padding:10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -34,6 +34,7 @@ body {
 main {
     display: flex;  
     height: 100vh;
+    align-items: center;
 }
 
 .container {
@@ -44,9 +45,10 @@ main {
 }
 
 #interface {
-    margin: 10px;
+    /* margin-left: 10px; */
     color: rgb(126, 178, 116);
     max-height: 100vh;
+    /* max-width: 30%; */
     
 }
 
@@ -58,9 +60,26 @@ main {
     
 }
 
-h3 {
+.data-category {
+    display: grid;
+    grid-template-columns: 7% auto;
+    border-bottom: 1px solid rgb(126, 178, 116);
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
+
+h4 {
     margin: 3px;
     margin-bottom: 5px;
+    max-width: 100%;
+    max-height: 100%;
+    /* position: absolute; */
+    transform: rotate(-90deg) 
     
 }
 
@@ -86,12 +105,9 @@ input:hover{
     cursor:pointer;
     border-radius: 50%;
     transition: all .5s;
-    
-    
 }
 
 .question:hover{
-    
     background-color: rgb(109, 87, 206);
 }
 
@@ -105,9 +121,6 @@ input:hover{
     position: absolute;
     z-index: 1;
     margin: 5px;
-    
-    
-    
 }
 
 .show {
@@ -126,12 +139,13 @@ input:hover{
 
 .data-row {
     display: grid;
-    grid-template-columns: 30% 30% 30% 10%;
+    grid-template-columns: 30% 20% 20% 10%;
     margin: 3px;
 }
 
 #buttons {
-    margin: 10px;
+    margin: 5px;
+    
 }
 
 button {
