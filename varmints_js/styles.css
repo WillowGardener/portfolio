@@ -3,9 +3,7 @@
 body {
     background-color: rgb(5,3,15);
     font-family: 'Lato', sans-serif;
-
     font-family: 'Roboto', sans-serif;
-    
     width: 100%;    
     margin: 0px;
 }
@@ -48,6 +46,7 @@ main {
     /* margin-left: 10px; */
     color: rgb(126, 178, 116);
     max-height: 100vh;
+    font-size: 95%;
     /* max-width: 30%; */
     
 }
@@ -63,13 +62,18 @@ main {
 .data-category {
     display: grid;
     grid-template-columns: 7% auto;
-    border-bottom: 1px solid rgb(126, 178, 116);
+    
 }
 
 .header-container {
     display: flex;
     align-items: center;
     justify-content:center;
+    border-bottom: 2px solid rgb(126, 178, 116);
+}
+
+#fox-header-container {
+    border-bottom: rgb(5,3,15)
 }
 
 
@@ -82,6 +86,8 @@ h4 {
     transform: rotate(-90deg) 
     
 }
+
+
 
 input {
     color: rgb(126, 178, 116);
@@ -129,6 +135,14 @@ input:hover{
     
 }
 
+#predator-speed-efficiency-answer {
+    bottom: 10px; 
+}
+
+#predator-sense-efficiency-answer {
+    bottom: 40px; 
+}
+
 .close {
     cursor: pointer;
     position: absolute;
@@ -145,7 +159,7 @@ input:hover{
 
 #buttons {
     margin: 5px;
-    
+    margin-left: 8%;
 }
 
 button {
@@ -165,6 +179,4 @@ button:hover{
 }
 
 
-footer {
-    margin: 10px;
-}
+

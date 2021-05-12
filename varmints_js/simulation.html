@@ -13,8 +13,8 @@
       <div class='container'>
         <p id='game-description'>
         Varmints is a tiny ecosystem simulator. The rabbits eat the grass, the foxes eat the rabbits. Adjust the attributes of the grass, rabbits,
-        and foxes to see how it affects the development of your ecosystem. But with each generation, the animals mutate, and through survival
-        of the fittest, each species evolves. Try to keep it in balance as long as possible! To see what each attribute
+        and foxes to see how it affects the development of your ecosystem, or leave them on their defaults to see what happens. But with each generation, the animals mutate, and through survival
+        of the fittest, each species evolves. Try to keep the system in balance as long as possible! To see what each attribute
         does, click on the question mark next to it. When you're satisfied with the ecosystem's statistics, click the 'Begin Eco-simulation' button
         and LOOK AT EM GO! <br>
         &copy; Griffin Wimminger 2021
@@ -68,7 +68,7 @@
               </div>
               <div class = 'data-row'>
                 <label for='grass-spawn-threshold-rate'>Spawn Threshold: </label>
-                <input type='number' value='3' id='grass-spawn-threshold' name='grass-spawn-threshold'>
+                <input type='number' value='4' id='grass-spawn-threshold' name='grass-spawn-threshold'>
                 <div></div>
                 <div>           
                   <img src='help.png' id='grass-spawn-threshold-question' class='question'>
@@ -79,7 +79,7 @@
                 </div>
               </div>
               <div class = 'data-row'>
-                <label for='grass-reach'>Reach: </label>
+                <label for='grass-reach' id='grass-reach-label'>Reach: </label>
                 <input type='number' value='70' max='1000' id='grass-reach' name='grass-reach'>
                 <div></div>
                 <div>           
@@ -247,7 +247,7 @@
           </div>
 
           <div id='fox-data' class='data-category'>
-            <div class='header-container'>
+            <div class='header-container' id='fox-header-container'>
               <h4>Foxes</h4>
             </div>
             <div>

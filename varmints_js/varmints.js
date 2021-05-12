@@ -73,7 +73,7 @@ for (question of questionList) {
 let closeList = document.getElementsByClassName('close')
 for (closeX of closeList) {
     closeX.addEventListener('click', function() {
-        console.log(closeX.parentElement)
+        
         this.parentElement.classList.toggle('show')
     })
     
@@ -110,7 +110,7 @@ class Grass {
         this.germinationDistance = grassGerminationDistance
         this.spawnThreshold = grassSpawnThreshold
         this.reach = grassReach
-        this.maxDensity = this.germinationDistance/10
+        this.maxDensity = this.germinationDistance/7
         let grassImage = document.createElement('img')
         grassImage.src = "grass.png"
         this.img = grassImage
@@ -132,7 +132,7 @@ class Grass {
             }
         })
         let mateRoll = mateCount * Math.random()
-        console.log(mateCount)
+        
         if (mateRoll > this.spawnThreshold && mateCount <= this.maxDensity) {
             let baby = new Grass()
             baby.x = this.x + (Math.random()-.5)*2*this.reach
@@ -471,8 +471,8 @@ function startup() {
     
     //Maintenance function to check data yearly
     maintenance = setInterval( function() {
-        console.log(preyList)
-        console.log(predList)
+        // console.log(preyList)
+        // console.log(predList)
         yearCount += 1
 
     },12000)
@@ -554,9 +554,13 @@ function main_loop() {
 
         if (preyList.length == 0 && predList.length == 0 && resultsRead === false) {
             ctx.clearRect(0,0,width,height)
+            gameDescription= document.getElementById('game-description')
+            gameDescription.style.visibility = 'visible'
             alert(`uh oh... all the varmints are dead. On the upside, your ecosystem lasted ${yearCount} years before total ecological collapse!`)
             resultsRead = true
             running = false
+            gameDescription= document.getElementById('game-description')
+            gameDescription.style.visibility = 'visible'
         }   
 
         window.requestAnimationFrame(main_loop)
