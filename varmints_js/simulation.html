@@ -28,8 +28,8 @@
             <h3>Grass</h3>
             <div class = 'data-row'>
               <label for='grass-energy'>Nutrition: </label>
-              <input type='number' value='20' id='grass-energy-min' name='grass-energy-min'>
-              <input type='number' value='20' id='grass-energy-max' name='grass-energy-max'>
+              <input type='number' value='10' id='grass-energy-min' name='grass-energy-min'>
+              <input type='number' value='10' id='grass-energy-max' name='grass-energy-max'>
               <div>
                 <img src='help.png' class='question' id='grass-energy-question'>
                 <span class='answer' id='grass-energy-answer'>
@@ -47,6 +47,43 @@
                 <span class='answer' id='grass-spawn-rate-answer'>
                   <p>Spawn rate is the number of times per second that a grass unit spawns. Maximum value is 1000.<p>
                   <div class='close' id='grass-spawn-rate-close'>&times</div>
+                </span>             
+              </div>
+            </div>
+            <div class = 'data-row'>
+              <label for='grass-germination-distance'>Spawn Distance: </label>
+              <input type='number' value='50' id='grass-germination-distance' name='grass-germination-distance'>
+              <div></div>
+              <div>           
+                <img src='help.png' id='grass-germination-distance-question' class='question'>
+                <span class='answer' id='grass-germination-distance-answer'>
+                  <p>Grass needs other grasses near it to create new grass. If you increase the spawn distance, the grass pollen can travel
+                  farther away, allowing the grass to mate with other grasses farther away.<p>
+                  <div class='close' id='grass-germination-distance-close'>&times</div>
+                </span>             
+              </div>
+            </div>
+            <div class = 'data-row'>
+              <label for='grass-spawn-threshold-rate'>Spawn Threshold: </label>
+              <input type='number' value='3' id='grass-spawn-threshold' name='grass-spawn-threshold'>
+              <div></div>
+              <div>           
+                <img src='help.png' id='grass-spawn-threshold-question' class='question'>
+                <span class='answer' id='grass-spawn-threshold-answer'>
+                  <p>Spawn threshold is the number of nearby grasses that a grass needs to reproduce.<p>
+                  <div class='close' id='grass-spawn-threshold-close'>&times</div>
+                </span>             
+              </div>
+            </div>
+            <div class = 'data-row'>
+              <label for='grass-reach'>Reach: </label>
+              <input type='number' value='70' max='1000' id='grass-reach' name='grass-reach'>
+              <div></div>
+              <div>           
+                <img src='help.png' id='grass-reach-question' class='question'>
+                <span class='answer' id='grass-reach-answer'>
+                  <p>Reach is how far away a grass can send its seed and grow a new grass.<p>
+                  <div class='close' id='grass-reach-close'>&times</div>
                 </span>             
               </div>
             </div>

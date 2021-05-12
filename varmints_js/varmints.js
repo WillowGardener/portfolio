@@ -16,6 +16,9 @@ let grassStartNumber = 200
 let grassSpawnRate = 20
 let grassEnergyMin = 20
 let grassEnergyMax = 30
+let grassGerminationDistance = 50
+let grassSpawnThreshold = 3
+let grassReach = 50
 
 let preyStartNumber = 32
 let preyMaxAge = 8
@@ -59,188 +62,6 @@ let predatorSpeedEfficiency = 3
 
 let begin = document.getElementById('begin-simulation')
 let halt = document.getElementById('halt-simulation')
-
-// let grassEnergyQuestion = document.getElementById('grass-energy-question')
-// grassEnergyQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('grass-energy-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let grassSpawnRateQuestion = document.getElementById('grass-spawn-rate-question')
-// grassSpawnRateQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('grass-spawn-rate-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let preyStartNumberQuestion = document.getElementById('prey-start-number-question')
-// preyStartNumberQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('prey-start-number-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let preyMaxAgeQuestion = document.getElementById('prey-max-age-question')
-// preyMaxAgeQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('prey-max-age-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let preyEnergyQuestion = document.getElementById('prey-energy-question')
-// preyEnergyQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('prey-energy-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let preySpeedQuestion = document.getElementById('prey-speed-question')
-// preySpeedQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('prey-speed-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let preyAwarenessQuestion = document.getElementById('prey-awareness-question')
-// preyAwarenessQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('prey-awareness-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let preyGreedQuestion = document.getElementById('prey-greed-question')
-// preyGreedQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('prey-greed-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let preyLibidoQuestion = document.getElementById('prey-libido-question')
-// preyLibidoQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('prey-libido-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let preyGestationLengthQuestion = document.getElementById('prey-gestation-length-question')
-// preyGestationLengthQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('prey-gestation-length-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let preyLitterQuestion = document.getElementById('prey-litter-question')
-// preyLitterQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('prey-litter-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let preyInvestmentQuestion = document.getElementById('prey-investment-question')
-// preyInvestmentQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('prey-investment-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let preySenseEfficiencyQuestion = document.getElementById('prey-sense-efficiency-question')
-// preySenseEfficiencyQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('prey-sense-efficiency-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let preySpeedEfficiencyQuestion = document.getElementById('prey-speed-efficiency-question')
-// preySpeedEfficiencyQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('prey-speed-efficiency-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let predatorStartNumberQuestion = document.getElementById('predator-start-number-question')
-// predatorStartNumberQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('predator-start-number-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let predatorMaxAgeQuestion = document.getElementById('predator-max-age-question')
-// predatorMaxAgeQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('predator-max-age-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let predatorEnergyQuestion = document.getElementById('predator-energy-question')
-// predatorEnergyQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('predator-energy-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let predatorSpeedQuestion = document.getElementById('predator-speed-question')
-// predatorSpeedQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('predator-speed-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let predatorAwarenessQuestion = document.getElementById('predator-awareness-question')
-// predatorAwarenessQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('predator-awareness-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let predatorGreedQuestion = document.getElementById('predator-greed-question')
-// predatorGreedQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('predator-greed-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let predatorLibidoQuestion = document.getElementById('predator-libido-question')
-// predatorLibidoQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('predator-libido-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let predatorGestationLengthQuestion = document.getElementById('predator-gestation-length-question')
-// predatorGestationLengthQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('predator-gestation-length-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let predatorLitterQuestion = document.getElementById('predator-litter-question')
-// predatorLitterQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('predator-litter-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let predatorInvestmentQuestion = document.getElementById('predator-investment-question')
-// predatorInvestmentQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('predator-investment-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let predatorSenseEfficiencyQuestion = document.getElementById('predator-sense-efficiency-question')
-// predatorSenseEfficiencyQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('predator-sense-efficiency-answer')
-//     answer.classList.toggle('show')
-    
-// })
-
-// let predatorSpeedEfficiencyQuestion = document.getElementById('predator-speed-efficiency-question')
-// predatorSpeedEfficiencyQuestion.addEventListener('click', function(){
-//     let answer = document.getElementById('predator-speed-efficiency-answer')
-//     answer.classList.toggle('show')
-    
-// })
 
 let questionList = document.getElementsByClassName('question')
 for (question of questionList) {
@@ -286,10 +107,10 @@ class Grass {
     constructor(){
         this.x = Math.round(Math.random()*width)
         this.y = Math.round(Math.random()*height)
-        this.awareness = 50
-        this.spawnThreshold = 5
-        this.reach = 50
-        this.maxDensity = 15
+        this.germinationDistance = grassGerminationDistance
+        this.spawnThreshold = grassSpawnThreshold
+        this.reach = grassReach
+        this.maxDensity = this.germinationDistance/10
         let grassImage = document.createElement('img')
         grassImage.src = "grass.png"
         this.img = grassImage
@@ -306,7 +127,7 @@ class Grass {
         let mateCount = 0
         speciesList.forEach((grass,i) => {
             let distance = this.checkProximity(grass)
-            if (distance <= this.awareness) {
+            if (distance <= this.germinationDistance) {
                 mateCount+=1
             }
         })
@@ -316,6 +137,18 @@ class Grass {
             let baby = new Grass()
             baby.x = this.x + (Math.random()-.5)*2*this.reach
             baby.y = this.y + (Math.random()-.5)*2*this.reach
+            if (baby.x < 10) {
+                baby.x = 10
+            }
+            else if (baby.x > width-10) {
+                baby.x = width- 10
+            }
+            if (baby.y < 10) {
+                baby.y = 10
+            }
+            else if (baby.y > height-10) {
+                baby.y = height- 10
+            }
             speciesList.push(baby)
         }
         
@@ -576,6 +409,9 @@ function startup() {
     grassEnergyMin = parseFloat(document.getElementById("grass-energy-min").value)
     grassEnergyMax = parseFloat(document.getElementById("grass-energy-max").value)
     grassSpawnRate = 1000/parseInt(document.getElementById('grass-spawn-rate').value)
+    grassGerminationDistance = parseFloat(document.getElementById("grass-germination-distance").value)
+    grassSpawnThreshold = parseFloat(document.getElementById("grass-spawn-threshold").value)
+    grassReach = parseFloat(document.getElementById("grass-reach").value)
     
     preyStartNumber = parseInt(document.getElementById('prey-start-number').value)
     preyMaxAge = parseInt(document.getElementById('prey-max-age').value)
@@ -646,6 +482,7 @@ function startup() {
         // grassList.push(grass)
         grassList.forEach((grass,i) => {
             grass.seed(grassList)
+            // if (grass.x > width || grass.x < 0 || grass.y > length )
         })
     },grassSpawnRate)
     
