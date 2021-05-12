@@ -13,7 +13,7 @@ let yearCount = 0
 let maintenance = null
 
 let grassStartNumber = 200
-let grassSpawnRate = 20
+let grassSpawnRate = 200
 let grassEnergyMin = 20
 let grassEnergyMax = 30
 let grassGerminationDistance = 50
@@ -408,7 +408,7 @@ class Predator extends Animal {
 function startup() {
     grassEnergyMin = parseFloat(document.getElementById("grass-energy-min").value)
     grassEnergyMax = parseFloat(document.getElementById("grass-energy-max").value)
-    grassSpawnRate = 1000/parseInt(document.getElementById('grass-spawn-rate').value)
+    // grassSpawnRate = 1000/parseInt(document.getElementById('grass-spawn-rate').value)
     grassGerminationDistance = parseFloat(document.getElementById("grass-germination-distance").value)
     grassSpawnThreshold = parseFloat(document.getElementById("grass-spawn-threshold").value)
     grassReach = parseFloat(document.getElementById("grass-reach").value)

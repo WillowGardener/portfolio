@@ -1,7 +1,7 @@
 
 
 body {
-    background-color: rgb(5,3,15);
+    background-color: rgb(5,3,25);
     font-family: 'Lato', sans-serif;
     font-family: 'Roboto', sans-serif;
     width: 100%;    
@@ -11,7 +11,7 @@ body {
 #game-description {
     position: absolute;
     border-radius: 6px;
-    background-color: rgba(5, 3, 15, 0.808);
+    background-color: rgba(5, 3, 25, 0.808);
     color: rgba(126, 178, 116);
     max-width: 40%;
     padding:10px;
@@ -73,7 +73,7 @@ main {
 }
 
 #fox-header-container {
-    border-bottom: rgb(5,3,15)
+    border-bottom: rgb(5,3,25)
 }
 
 
@@ -91,7 +91,7 @@ h4 {
 
 input {
     color: rgb(126, 178, 116);
-    background-color: rgb(5,3,15);
+    background-color: rgb(5,3,25);
     transition: all .5s;
     border: 2px solid rgba(126, 178, 116, 0.678);
     border-radius: 2px;
@@ -100,7 +100,7 @@ input {
 }
 
 input:hover{
-    color: rgb(5,3,15);
+    color: rgb(5,3,25);
     background-color: rgb(126, 178, 116);
 }
 
@@ -114,13 +114,13 @@ input:hover{
 }
 
 .question:hover{
-    background-color: rgb(109, 87, 206);
+    background-color: rgb(104, 8, 194);
 }
 
 .answer {
     visibility: hidden;
     background-color: rgba(126, 178, 116, 0.616);
-    color: rgb(5,3,15);
+    color: rgb(5,3,25);
     text-align: center;
     border-radius: 6px;
     padding: 5px;
@@ -167,16 +167,17 @@ button {
     border: 2px solid rgb(126, 178, 116);
     border-radius: 2px;
     cursor:pointer;
-    background-color: rgb(2,3,15);
+    background-color: rgb(5,3,25);
     color:rgb(126, 178, 116);
     font-family: 'Roboto', sans-serif;
     transition: all .5s;
 }
 
 button:hover{
-    color: rgb(5,3,15);
+    color: rgb(5,3,25);
     background-color: rgb(126, 178, 116);
 }
 
 
 
+/* grass, rabbit, fox, and question mark images are free assets obtained with permission from flaticon.com */
